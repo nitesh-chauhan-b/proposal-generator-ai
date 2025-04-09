@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ company_name }} - Project Proposal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0px; }
+        .header { text-align: center; padding: 10px; background: #f8f8f8; }
+        .content { margin: 20px; }
+        .section { margin-bottom: 20px; }
+        .footer { text-align: center; padding: 10px; background: #f8f8f8; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="drc_logo.svg" alt="Company Logo" height="50">
+        <h1>Project Proposal</h1>
+        <h3>{{ client_name }}</h3>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>{{ introduction }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Problem Statement</h2>
+            <p>{{ problem_statement }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Proposed Solution</h2>
+            <p>{{proposed_solution}}</p>
+            <ul>
+                {% for phase in solution_phases %}
+                <li><b>Phase {{ loop.index }}:</b> {{ phase }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Team Involved</h2>
+            <ul>
+                {% for member in team_members %}
+                <li>{{ member.name }} - {{ member.role }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Quotation</h2>
+            <p>Total Cost: <b>{{ total_cost }}</b></p>
+            <p>Breakdown:</p>
+            <ul>
+                {% for item in cost_breakdown %}
+                <li>{{ item.description }} - {{ item.amount }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© {{ company_name }} | Contact: info@drcsystems.com</p>
+    </div>
+
+</body>
+</html>
