@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ project_title }} - Proposal</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2c2c2c;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 50px auto;
+      background: white;
+      padding: 50px;
+      border-radius: 10px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 0px;
+    }
+
+    header img {
+      max-height: 60px;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      color: #111;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 40px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .about-company img {
+      max-height: 80px;
+      margin-right: 15px;
+    }
+
+    .client-logos {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .client-logos img {
+      max-height: 50px;
+      opacity: 0.8;
+    }
+
+    .highlight {
+      background-color: #f0f0f0;
+      padding: 10px 15px;
+      border-left: 4px solid #999;
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f5f5f5;
+    }
+
+    .price-table td, .price-table th {
+      text-align: right;
+    }
+
+    .approval {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #ccc;
+    }
+
+    .approval p {
+      margin-bottom: 40px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Cover -->
+    <header>
+      <img src="assets/drc_logo.svg" alt="DRC Systems India Limited." height="50px">
+      <h1>{{ project_title }}</h1>
+      <p><strong>Proposal for:</strong> {{ client_name }}<br>
+         <strong>Date:</strong> {{ proposal_date }}</p>
+    </header>
+
+    <!-- Summary -->
+    <div class="section">
+      <h2>Executive Summary</h2>
+      <p>{{ executive_summary }}</p>
+    </div>
+
+    <!-- About the Company -->
+    <div class="section about-company">
+      <h2>About {{ company_name }}</h2>
+      <p>{{ about_company }}</p>
+      {% if team_images %}
+        <div>
+          {% for image in team_images %}
+            <img src="{{ image }}" alt="Team Member">
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if client_logos %}
+        <h3>Our Clients</h3>
+        <div class="client-logos">
+          {% for logo in client_logos %}
+            <img src="{{ logo }}" alt="Client Logo">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="section">
+      <h2>Why You Should Hire Us</h2>
+      <ul>
+        {% for reason in why_us %}
+          <li>{{ reason }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Proposed Solution -->
+    <div class="section">
+      <h2>Proposed Solution</h2>
+      <p>{{ proposed_solution }}</p>
+    </div>
+
+    <!-- Project Timeline -->
+    <div class="section">
+      <h2>Primary Project Schedule</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for phase in project_schedule %}
+          <tr>
+            <td>{{ phase.name }}</td>
+            <td>{{ phase.description }}</td>
+            <td>{{ phase.start_date }}</td>
+            <td>{{ phase.end_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pricing -->
+    <div class="section">
+      <h2>Pricing</h2>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pricing %}
+          <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.cost }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{{ total_cost }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Approval -->
+    <div class="section approval">
+      <h2>Approval & Next Steps</h2>
+      <p>We look forward to collaborating on this project. Please confirm approval by signing below.</p>
+      <p>Client Name: ________________________</p>
+      <p>Signature: ____________________________</p>
+      <p>Date: ________________________________</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      &copy; {{ current_year }} {{ company_name }}. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
