@@ -7,9 +7,7 @@ import langchain_helper as helper
 import json
 from langchain_core.output_parsers import JsonOutputParser
 
-
-
-# Load Jinja2 template
+# Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template("proposal_template.html")
 
@@ -32,7 +30,6 @@ try:
         if os.path.exists("client_documents/client_requirements.pdf"):
             client_doc_path = "client_documents/client_requirements.pdf"
 
-
         company_quatation_path = "resources/company_quatation.pdf"
 
         client_req = helper.extract_client_requirements(client_doc_path)
@@ -53,11 +50,6 @@ try:
         st.components.v1.html(proposal_html, height=500, scrolling=True)
 
         # Buttons for Download
-        # if st.button("Download as HTML"):
-        #     with open("documents/proposal.html", "w") as file:
-        #         file.write(proposal_html)
-        #     st.download_button("Download HTML", proposal_html, "proposal.html", "text/html")
-
 
         HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
         with open("documents/proposal.pdf", "rb") as file:

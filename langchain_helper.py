@@ -150,7 +150,7 @@ def create_proposal(client_requirements,company_quatation):
             {{"name": "Random Indian Person Name", "role": "Role in project"}},
             {{"name": "Random Indian Person Name", "role": "Role in project"}}
         ],
-        "total_cost": "Calculate the total cost",
+        "total_cost": "Calculate the total cost based on requirements",
         "cost_breakdown": [
             {{"description": "Service 1", "amount": "Cost for service"}},
             {{"description": "Service 2", "amount": "Cost for service"}},
