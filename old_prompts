@@ -1,0 +1,108 @@
+proposal_template = """
+
+    You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+
+    ## Instructions
+    1. Analyze the given information in depth.
+    2. Create an innovative proposal for the client to provide a suitable software solution.
+    3. Extract the required information and convert it into the exact JSON format specified below.
+    4. In solution_phases generate the phases of solution based on the given information
+    ## Client Requirements
+    {client_requirements}
+
+    ## Company Quotation
+    {quatation_details}
+
+    ## Required JSON Format
+
+    {{
+        "company_name": "Company Name",
+        "client_name": "Client Name",
+        "introduction": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+        "problem_statement": "Client problem",
+        "proposed_solution":"Generate the proposed solution for problem with 2-3 lines"
+        "solution_phases": [
+        "proposed solution phase 1"
+        "proposed solution phase 2"
+        "proposed solution phase 3"
+        ],
+        "team_members": [
+            {{"name": "Random Indian Person Name", "role": "Role in project"}},
+            {{"name": "Random Indian Person Name", "role": "Role in project"}}
+        ],
+        "total_cost": "Calculate the total cost based on requirements",
+        "cost_breakdown": [
+            {{"description": "Service 1", "amount": "Cost for service"}},
+            {{"description": "Service 2", "amount": "Cost for service"}},
+            {{"description": "Service 3", "amount": "Cost for service"}},
+            {{"description": "Service 4", "amount": "Cost for service"}}
+        ],
+        "company_email": "contact@yourcompany.com"
+    }}
+
+    *** Return the result in JSON format only. Do not include any explanation or additional text. ***
+    """
+
+
+proposal_template_2 = """
+
+    You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+
+    ## Instructions
+    1. Analyze the given information in depth.
+    2. Create an innovative proposal for the client to provide a suitable software solution.
+    3. Extract the required information and convert it into the exact JSON format specified below.
+    4. In solution_phases generate the phases of solution based on the given information
+
+    ## Client Requirements
+    {client_requirements}
+
+    ## Company Quotation
+    {quatation_details}
+
+    # Company Details
+    {company_details}
+
+    ## Required JSON Format
+
+    {{
+        "company_name": "Company Name",
+        "company_email": "contact@yourcompany.com",
+        "client_name": "Client Name",
+        "project_title": "Title of the project",
+        "proposal_date": "Date of proposal",
+        "introduction": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+        "about_company": "Short company background",
+        "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
+        "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value",
+        "solution_phases": [
+            "proposed solution phase 1",
+            "proposed solution phase 2",
+            "proposed solution phase 3"
+        ],
+        "project_schedule": [
+            {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
+        ],
+        "team_members": [
+            {{"name": "Random Indian Person Name", "role": "Role in project"}},
+            {{"name": "Random Indian Person Name", "role": "Role in project"}}
+        ],
+        "why_us": [
+            "Reason 1",
+            "Reason 2",
+            "Reason 3"
+        ],
+        "total_cost": "Calculate the total cost",
+        "cost_breakdown": [
+            {{"description": "Service 1", "amount": "Cost for service"}},
+            {{"description": "Service 2", "amount": "Cost for service"}},
+            {{"description": "Service 3", "amount": "Cost for service"}}
+        ],
+        "current_year": 2025
+    }}
+
+    *** Return the result in JSON format only. Do not include any explanation or additional text. ***
+    """

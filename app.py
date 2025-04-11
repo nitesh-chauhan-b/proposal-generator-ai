@@ -9,7 +9,7 @@ from langchain_core.output_parsers import JsonOutputParser
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template("proposal_template.html")
+template = env.get_template("proposal_template_2.html")
 
 # Streamlit UI
 st.title("📄 Proposal Creator AI")
@@ -30,12 +30,20 @@ try:
         if os.path.exists("client_documents/client_requirements.pdf"):
             client_doc_path = "client_documents/client_requirements.pdf"
 
-        company_quatation_path = "resources/company_quatation.pdf"
 
+        company_quatation_path = "resources/company_quatation.pdf"
+        company_details_path = "resources/DRC_Systems_Details.pdf"
+
+        #Getting client Requirements
         client_req = helper.extract_client_requirements(client_doc_path)
+
+        #Getting company quatation
         company_quatation = helper.extract_company_quatation_details(company_quatation_path)
 
-        company_proposal = helper.create_proposal(client_req,company_quatation)
+        #Getting company details
+        company_details = helper.extract_company_details(company_details_path)
+
+        company_proposal = helper.create_proposal(client_req,company_quatation,company_details)
 
         #Converting data into JSON
         json_parser = JsonOutputParser()
