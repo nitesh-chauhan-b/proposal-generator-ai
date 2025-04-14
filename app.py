@@ -6,6 +6,8 @@ from weasyprint import HTML
 import langchain_helper as helper
 import json
 from langchain_core.output_parsers import JsonOutputParser
+from io import StringIO,BytesIO
+
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
@@ -49,6 +51,14 @@ try:
         json_parser = JsonOutputParser()
         company_proposal = json_parser.parse(company_proposal)
 
+        company_proposal["client_logos"] = [
+            "https://www.drcsystems.com/wp-content/uploads/2023/06/iimb-logo.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-3.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-4.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-2.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/06/wipro-logo.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-6.png",
+        ]
         # print("Proposal Type",type(company_proposal))
 
         proposal_html = template.render(company_proposal)
@@ -58,10 +68,15 @@ try:
         st.components.v1.html(proposal_html, height=500, scrolling=True)
 
         # Buttons for Download
-
         HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
         with open("documents/proposal.pdf", "rb") as file:
                 st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
+        #
+
+        # if st.button("Download as PDF"):
+        #     HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
+        #     with open("documents/proposal.pdf", "rb") as file:
+        #         st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
 
 except Exception as e:
     st.write("Something Went Wrong \n\n",e)

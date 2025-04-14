@@ -5,8 +5,8 @@ from langchain.prompts import PromptTemplate
 import untils
 
 load_dotenv()
-#Setting LLM model
 
+#Setting LLM model
 llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
 
 #Testing
@@ -58,7 +58,6 @@ def extract_client_requirements(file_path):
     response = extraction_chain.invoke(input={"document_text":filtered_client_requirements})
 
     return response.content
-
 
 def extract_company_quatation_details(file_path):
 
@@ -116,7 +115,6 @@ def extract_company_quatation_details(file_path):
 
     return quatation_response.content
 
-
 def extract_company_details(file_path):
 
     company_loader = PyPDFLoader(file_path)
@@ -163,7 +161,6 @@ def extract_company_details(file_path):
 
 def create_proposal(client_requirements,company_quatation,company_details):
     # Another prompt
-    # Another prompt
     proposal_template = """
 
     You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
@@ -173,7 +170,8 @@ def create_proposal(client_requirements,company_quatation,company_details):
     2. Create an innovative proposal for the client to provide a suitable software solution.
     3. Extract the required information and convert it into the exact JSON format specified below.
     4. In solution_phases generate the phases of solution based on the given information
-
+    5. For Technology Stack Field Analiyse the company technology expreties and based on that generate the technology stack.
+    
     ## Client Requirements
     {client_requirements}
 
@@ -193,6 +191,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
         "proposal_date": "Date of proposal",
         "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust",
         "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+
         "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
         "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value",
         "solution_phases": [
@@ -207,9 +206,18 @@ def create_proposal(client_requirements,company_quatation,company_details):
             {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
         ],
         "team_members": [
-            {{"name": "Random Indian Person Name", "role": "Role in project"}},
-            {{"name": "Random Indian Person Name", "role": "Role in project"}}
+            {{"name": "Random Indian Person Name", "role": "Role in project",
+            "bio" :"Generate bio about team member in short respective to their domain"
+            }},
+            {{"name": "Random Indian Person Name", "role": "Role in project",
+            "bio" :"Generate bio about team member in short respective to their domain"
+            }},
         ],
+        "technology_stack": {{
+            "Domain Name 1" : [Technoloys used for this domian ],
+            "Domain Name 2" : [Technoloys used for this domian ],
+            "Domain Name 3" : [Technoloys used for this domian ],
+        }},
         "why_us": [
             "Reason 1",
             "Reason 2",

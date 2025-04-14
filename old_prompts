@@ -106,3 +106,86 @@ proposal_template_2 = """
 
     *** Return the result in JSON format only. Do not include any explanation or additional text. ***
     """
+
+last_prompt = proposal_template = """
+
+    You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+
+    ## Instructions
+    1. Analyze the given information in depth.
+    2. Create an innovative proposal for the client to provide a suitable software solution.
+    3. Extract the required information and convert it into the exact JSON format specified below.
+    4. In solution_phases generate the phases of solution based on the given information
+
+    ## Client Requirements
+    {client_requirements}
+
+    ## Company Quotation
+    {quatation_details}
+
+    # Company Details
+    {company_details}
+
+    ## Required JSON Format
+
+    {{
+        "company_name": "Company Name",
+        "company_email": "contact@yourcompany.com",
+        "client_name": "Client Name",
+        "project_title": "Title of the project",
+        "proposal_date": "Date of proposal",
+        "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust",
+        "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+          "client_logos": [
+            "drcsystems.com/wp-content/uploads/2023/06/iimb-logo.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-3.png",
+            "https://www.drcsystems.com/wp-content/uploads/2023/06/wipro-logo.png"
+        ],
+
+        "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
+        "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value",
+        "solution_phases": [
+            "proposed solution phase 1",
+            "proposed solution phase 2",
+            "proposed solution phase 3"
+        ],
+        "project_schedule": [
+            {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
+            {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
+        ],
+        "team_members": [
+            {{"name": "Random Indian Person Name", "role": "Role in project",
+            "bio" :"Generate bio about team member in short respective to their domain"
+            }},
+            {{"name": "Random Indian Person Name", "role": "Role in project",
+            "bio" :"Generate bio about team member in short respective to their domain"
+            }},
+        ],
+        "why_us": [
+            "Reason 1",
+            "Reason 2",
+            "Reason 3"
+        ],
+        "pricing": [
+            {{
+                "description": "pricing description 1 ",
+                "cost": "relavent price"
+            }},
+            {{
+                "description": "pricing description 2",
+                "cost": "relavent price"
+            }},
+            {{
+                "description": "pricing description 3",
+                "cost": "relavent price"
+            }},
+
+        ],
+        "total_cost": "Calculate the total cost accoring to the price",
+        "current_year": 2025
+    }}
+
+    *** Return the result in JSON format only. Do not include any explanation or additional text. ***
+    """
