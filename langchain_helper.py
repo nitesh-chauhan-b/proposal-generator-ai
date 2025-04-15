@@ -59,58 +59,92 @@ def extract_client_requirements(file_path):
 
     return response.content
 
-def extract_company_quatation_details(file_path):
+def extract_company_quatation_details(client_requirements):
 
-    quatation_loder = PyPDFLoader(file_path)
-
-    quatation_doc = quatation_loder.load()
-
-    # Extracting information from document
-    quatation_data = ""
-    for data in quatation_doc:
-        quatation_data += data.page_content
-
-
-    #Filtering extracted information
-    filtered_quatation_data = untils.clean_text(quatation_data)
+    # quatation_loder = PyPDFLoader(file_path)
+    #
+    # quatation_doc = quatation_loder.load()
+    #
+    # # Extracting information from document
+    # quatation_data = ""
+    # for data in quatation_doc:
+    #     quatation_data += data.page_content
+    #
+    #
+    # #Filtering extracted information
+    # filtered_quatation_data = untils.clean_text(quatation_data)
 
 
     #Converting Quatation data into Required JSON format
-    quotation_extraction_prompt = """
-    You are a helpful AI assistant designed to extract structured data from company quotations.
+    # quotation_extraction_prompt = """
+    # You are a helpful AI assistant designed to extract structured data from company quotations.
+    #
+    # ## Instructions
+    # 1. Carefully analyze the entire quotation content provided.
+    # 2. Extract the required details and format them strictly in the JSON structure given below.
+    # 3. Do **not** include any additional commentary, explanation, or notes—return **only** the JSON object.
+    # 4. If any required field is missing in the quotation, return it with an empty string or empty list as appropriate.
+    #
+    # ## Quotation Details
+    # {quotation_data}
+    #
+    # ## Expected JSON Format
+    # {{
+    #     "company_name": "Name of the company",
+    #     "services": {{
+    #         "service_type_1": ["Duration", "Cost of service"],
+    #         "service_type_2": ["Duration", "Cost of service"],
+    #         "service_type_3": ["Duration", "Cost of service"]
+    #     }},
+    #     "Terms & Condition": ["T&C 1", "T&C 2"]
+    # }}
+    #
+    # **Return Only JSON Data only. Nothing Else. NO PREAMBLE**
+    # """
 
-    ## Instructions
-    1. Carefully analyze the entire quotation content provided.
-    2. Extract the required details and format them strictly in the JSON structure given below.
-    3. Do **not** include any additional commentary, explanation, or notes—return **only** the JSON object.
-    4. If any required field is missing in the quotation, return it with an empty string or empty list as appropriate.
+    quatation_extraction_prompt = """ 
+        You are a quotation generator AI Assistant. While helps user to generate the quotation based on the client specified requirements.
 
-    ## Quotation Details
-    {quotation_data}
+        ### Instructions
+        1. Generate the response in a most realistic manner search the web for finding a better understanding if have to.
+        2. Your Job is to analysis the complete requirements of the client and try to understand their software requirements.
+        3. Then, generate a sample qutation based on the requirements with realistic prices and also generate the person who will work on the task with their name and bio.
+        4. Generate the prices in Indian Currency.
 
-    ## Expected JSON Format
-    {{
-        "company_name": "Name of the company",
-        "services": {{
-            "service_type_1": ["Duration", "Cost of service"],
-            "service_type_2": ["Duration", "Cost of service"],
-            "service_type_3": ["Duration", "Cost of service"]
-        }},
-        "Terms & Condition": ["T&C 1", "T&C 2"]
-    }}
+        #Client Requirements
+        {client_requirements}
 
-    **Return Only JSON Data only. Nothing Else. NO PREAMBLE**
+        #Format the output in JSON Only in the given format.
+        ### JSON format
+        {{
+            "company_name":"DRC Systems India Limited.",
+            "services":{{
+                "service_type_1":["Duration","Cost of service"],
+                "service_type_2":["Duration","Cost of service"],
+                "service_type_3":["Duration","Cost of service"],
+            }},
+           "team_members": [
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+            ],
+            "Terms & Condition":["T&C 1 ","T & C 2"]
+        }}
+
+
     """
-
     quatation_extraction = PromptTemplate(
-        input_variables=["quatation_data"],
-        template=filtered_quatation_data
+        input_variables=["client_requirements"],
+        template=quatation_extraction_prompt
     )
 
     #Creating simple chain
     quatation_chain = quatation_extraction | llm
 
-    quatation_response = quatation_chain.invoke(input={"quatation_data":filtered_quatation_data})
+    quatation_response = quatation_chain.invoke(input={"client_requirements":client_requirements})
 
 
     return quatation_response.content
@@ -170,7 +204,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
     2. Create an innovative proposal for the client to provide a suitable software solution.
     3. Extract the required information and convert it into the exact JSON format specified below.
     4. In solution_phases generate the phases of solution based on the given information
-    5. For Technology Stack Field Analiyse the company technology expreties and based on that generate the technology stack.
+    5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
     
     ## Client Requirements
     {client_requirements}
@@ -188,7 +222,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
         "company_email": "contact@yourcompany.com",
         "client_name": "Client Name",
         "project_title": "Title of the project",
-        "proposal_date": "Date of proposal",
+        "proposal_date": "Return the current data for proposal",
         "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust",
         "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
 
@@ -267,7 +301,7 @@ if __name__ == "__main__":
         client_requirements = extract_client_requirements("resources/SRS_Ecommerce_Platform.pdf")
 
         #Getting company quatation
-        company_quatation = extract_company_quatation_details("resources/company_quatation.pdf")
+        company_quatation = extract_company_quatation_details(client_requirements)
 
         #Getting company details
         company_details = extract_company_details("resources/DRC_Systems_Details.pdf")

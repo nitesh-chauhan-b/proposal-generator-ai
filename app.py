@@ -39,7 +39,7 @@ try:
         #Getting client Requirements
         client_req = helper.extract_client_requirements(client_doc_path)
 
-        #Getting company quatation
+        #Getting company quotation
         company_quatation = helper.extract_company_quatation_details(company_quatation_path)
 
         #Getting company details

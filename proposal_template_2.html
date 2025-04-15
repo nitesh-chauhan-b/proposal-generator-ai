@@ -104,9 +104,10 @@
     }
 
     .approval {
-      margin-top: 60px;
-      padding-top: 30px;
-      border-top: 1px solid #ccc;
+      page-break-before: always;
+      /* margin-top: 60px; */
+      /* padding-top: 30px;*/
+      /*border-top: 1px solid #ccc;*/
     }
 
     .approval p {
@@ -127,7 +128,6 @@
     ol li {
       margin-bottom: 8px;
     }
-
   </style>
 </head>
 <body>
@@ -151,13 +151,6 @@
     <div class="section about-company">
       <h2>About {{ company_name }}</h2>
       <p>{{ about_company }}</p>
-      {% if team_images %}
-        <div>
-          {% for image in team_images %}
-            <img src="{{ image }}" alt="Team Member">
-          {% endfor %}
-        </div>
-      {% endif %}
       {% if client_logos %}
         <h3>Our Clients</h3>
         <div class="client-logos">
@@ -292,7 +285,7 @@
         <li>Any changes in project scope may result in additional charges and timeline adjustments.</li>
         <li>DRC Systems retains the right to use the completed project as part of its portfolio unless explicitly restricted.</li>
         <li>Payment terms will be outlined in the formal contract agreement following proposal approval.</li>
-        <li>Client cooperation, timely approvals, and clear communication are required for smooth execution.</li>
+<!--        <li>Client cooperation, timely approvals, and clear communication are required for smooth execution.</li>-->
         <li>Intellectual property rights for all deliverables will be transferred upon full payment.</li>
       </ol>
     </div>
