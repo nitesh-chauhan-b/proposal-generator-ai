@@ -3,6 +3,7 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.prompts import PromptTemplate
 import untils
+from datetime import date
 
 load_dotenv()
 
@@ -11,7 +12,6 @@ llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
 
 #Testing
 # print(llm.invoke("hello"))
-
 
 #Extracting Client Requirements
 def extract_client_requirements(file_path):
@@ -222,8 +222,8 @@ def create_proposal(client_requirements,company_quatation,company_details):
         "company_email": "contact@yourcompany.com",
         "client_name": "Client Name",
         "project_title": "Title of the project",
-        "proposal_date": "Return the current data for proposal",
-        "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust",
+        "proposal_date":"{today_date}",
+        "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
         "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
 
         "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
@@ -279,8 +279,11 @@ def create_proposal(client_requirements,company_quatation,company_details):
     *** Return the result in JSON format only. Do not include any explanation or additional text. ***
     """
 
+    #Getting current data
+    today_date = date.today()
+
     proposal_prompt = PromptTemplate(
-        input_variables=["client_requirements", "quatation_details","company_details"],
+        input_variables=["client_requirements", "quatation_details","company_details","today_date"],
         template=proposal_template
     )
 
@@ -288,7 +291,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
     proposal_chain = proposal_prompt | llm
 
     #Getting proposal
-    response = proposal_chain.invoke(input={"client_requirements": client_requirements, "quatation_details": company_quatation,"company_details":company_details})
+    response = proposal_chain.invoke(input={"client_requirements": client_requirements, "quatation_details": company_quatation,"company_details":company_details,"today_date":today_date})
 
     #Printing the proposal
     print(response.content)
