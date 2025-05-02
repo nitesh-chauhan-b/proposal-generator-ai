@@ -5,9 +5,10 @@ from langchain_community.document_loaders import PyPDFLoader  # For extracting t
 from weasyprint import HTML
 import langchain_helper as helper
 import json
-from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.output_parsers import PydanticOutputParser,JsonOutputParser
 from io import StringIO,BytesIO
-
+import re
+from models import Proposal
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
@@ -40,38 +41,56 @@ try:
         client_req = helper.extract_client_requirements(client_doc_path)
 
         #Getting company quotation
-        company_quatation = helper.extract_company_quatation_details(company_quatation_path)
+        company_quatation = helper.extract_company_quatation_details(client_req)
 
         #Getting company details
         company_details = helper.extract_company_details(company_details_path)
 
         company_proposal = helper.create_proposal(client_req,company_quatation,company_details)
 
+        #Filtering the text
+
+        pattern = re.compile(r'\{[\s\S]*\}', re.DOTALL)
+        match = pattern.search(company_proposal)
+
+
+        temp = match.group(0)
+        print("\n\nFiltered JSON : \n\n",temp)
+        filtered_proposal = temp
+
+
         #Converting data into JSON
+
         json_parser = JsonOutputParser()
-        company_proposal = json_parser.parse(company_proposal)
+        if filtered_proposal:
+            company_proposal = json_parser.parse(filtered_proposal)
+            print("using filtered data")
+        else:
+            company_proposal = json_parser.parse(company_proposal)
+            print("using default data")
+            # json_parser = PydanticOutputParser(pydantic_object=Proposal)
+            #
+            # company_proposal = json_parser.parse(company_proposal)
+        if company_proposal:
+            company_proposal["client_logos"] = [
+                    "https://www.drcsystems.com/wp-content/uploads/2023/06/iimb-logo.png",
+                    "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-3.png",
+                    "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-4.png",
+                    "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-2.png",
+                    "https://www.drcsystems.com/wp-content/uploads/2023/06/wipro-logo.png",
+                    "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-6.png",
+                ]
 
-        company_proposal["client_logos"] = [
-            "https://www.drcsystems.com/wp-content/uploads/2023/06/iimb-logo.png",
-            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-3.png",
-            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-4.png",
-            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-2.png",
-            "https://www.drcsystems.com/wp-content/uploads/2023/06/wipro-logo.png",
-            "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-6.png",
-        ]
-        # print("Proposal Type",type(company_proposal))
+            proposal_html = template.render(company_proposal)
 
-        proposal_html = template.render(company_proposal)
+            # Display in Streamlit
+            st.subheader("📜 Proposal Preview")
+            st.components.v1.html(proposal_html, height=500, scrolling=True)
 
-        # Display in Streamlit
-        st.subheader("📜 Proposal Preview")
-        st.components.v1.html(proposal_html, height=500, scrolling=True)
-
-        # Buttons for Download
-        HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
-        with open("documents/proposal.pdf", "rb") as file:
-                st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
-        #
+            # Buttons for Download
+            HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
+            with open("documents/proposal.pdf", "rb") as file:
+                    st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
 
         # if st.button("Download as PDF"):
         #     HTML(string=proposal_html).write_pdf("documents/proposal.pdf")

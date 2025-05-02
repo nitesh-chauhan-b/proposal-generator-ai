@@ -1,3 +1,5 @@
+import os.path
+
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
@@ -150,48 +152,58 @@ def extract_company_quatation_details(client_requirements):
     return quatation_response.content
 
 def extract_company_details(file_path):
+    if os.path.exists("resources/company_extracted_details.txt"):
+        #Reading the file and returning the company details
+        with open("resources/company_extracted_details.txt","r") as file:
+            company_details = file.read()
 
-    company_loader = PyPDFLoader(file_path)
+        return company_details
 
-    compnay_doc = company_loader.load()
+    else:
+        company_loader = PyPDFLoader(file_path)
 
-    # Extracting text
-    company_details_text = ""
-    for doc in compnay_doc:
-        company_details_text += doc.page_content
+        compnay_doc = company_loader.load()
 
-    fileter_company_details = untils.clean_text(company_details_text)
+        # Extracting text
+        company_details_text = ""
+        for doc in compnay_doc:
+            company_details_text += doc.page_content
 
-    detail_prompt = """
-    You Are an Helpful AI Assistant which helps the user to extract the details of the company in consise manner from the given text.
+        fileter_company_details = untils.clean_text(company_details_text)
 
-    #Details
-    {company_details}
+        detail_prompt = """
+        You Are an Helpful AI Assistant which helps the user to extract the details of the company in consise manner from the given text. Make it as detailed and useful as possible.
+    
+        #Details
+        {company_details}
+    
+        #Instruction
+        1. Analyis the whole document in depth.
+        2. Convert the fileds which could be useful keeping in ming that this information will be used for creating a proposal from company.
+        3. The details about company should include Extensive_summary, about company, thier_clients, why_should_you_hire_us?, technological_exprerince, industry_exprerince, notable_projects, customer_staticfacation.
+        4. This all details MUST be in a JSON format. for example {{extensive_summaer:"summary"}} 
+        5. For some important sections make them into detail
+    
+        ##Extract all the important details and convet them into JSON Only.
+        #Retun the JSON output only. Nothing Else.
+    
+        """
 
-    #Instruction
-    1. Analyis the whole document in depth.
-    2. Convert the fileds which could be useful keeping in ming that this information will be used for creating a proposal from company.
-    3. The details about company should include Extensive_summary, about company, thier_clients, why_should_you_hire_us?, technological_exprerince, industry_exprerince, notable_projects, customer_staticfacation.
-    4. This all details MUST be in a JSON format. for example {{extensive_summaer:"summary"}} 
-    5. For some important sections make them into detail
+        company_details_prompt = PromptTemplate(
+            input_variables=["company_details"],
+            template=detail_prompt
+        )
 
-    ##Extract all the important details and convet them into JSON Only.
-    #Retun the JSON output only. Nothing Else.
+        # Simple chain
+        details_extraction_chian = company_details_prompt | llm
 
-    """
+        # Getting response
+        company_details = details_extraction_chian.invoke(input={"company_details": fileter_company_details})
 
-    company_details_prompt = PromptTemplate(
-        input_variables=["company_details"],
-        template=detail_prompt
-    )
+        with open("resources/company_extracted_details.txt","w") as file:
+            file.write(company_details.content)
 
-    # Simple chain
-    details_extraction_chian = company_details_prompt | llm
-
-    # Getting response
-    company_details = details_extraction_chian.invoke(input={"company_details": fileter_company_details})
-
-    return company_details.content
+        return company_details.content
 
 def create_proposal(client_requirements,company_quatation,company_details):
     # Another prompt
@@ -206,6 +218,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
     4. In solution_phases generate the phases of solution based on the given information
     5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
     
+    
     ## Client Requirements
     {client_requirements}
 
@@ -214,9 +227,9 @@ def create_proposal(client_requirements,company_quatation,company_details):
 
     # Company Details
     {company_details}
-
+    
     ## Required JSON Format
-
+  
     {{
         "company_name": "Company Name",
         "company_email": "contact@yourcompany.com",
@@ -275,8 +288,6 @@ def create_proposal(client_requirements,company_quatation,company_details):
         "total_cost": "Calculate the total cost accoring to the price",
         "current_year": 2025
     }}
-
-    *** Return the result in JSON format only. Do not include any explanation or additional text. ***
     """
 
     #Getting current data
@@ -294,7 +305,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
     response = proposal_chain.invoke(input={"client_requirements": client_requirements, "quatation_details": company_quatation,"company_details":company_details,"today_date":today_date})
 
     #Printing the proposal
-    print(response.content)
+    print("\n\n Unfiltered Response : \n\n",response.content)
     return response.content
 
 

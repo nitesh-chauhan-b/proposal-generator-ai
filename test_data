@@ -1,0 +1,270 @@
+Filtered JSON :  {
+  "company_name": "DRC Systems India Limited",
+  "company_email": "contact@drcsystems.com",
+  "client_name": "Client Name",
+  "project_title": "Automated Business Process System",
+  "proposal_date": "2025-05-02",
+  "executive_summary": "We are thrilled to present a cutting-edge software solution that will revolutionize your business operations, enhance efficiency, and reduce costs. Our team of experts will work closely with you to design and develop a scalable, secure, and user-friendly system that meets your growing business needs. With our expertise in Agile methodologies, we ensure timely project completion and minimal business impact. Our innovative approach will not only improve your operational efficiency but also drive business growth.",
+  "about_company": "DRC Systems India Limited is a leading software development company with over 12 years of experience in delivering high-quality, scalable, and robust technology solutions. Our team of experts has extensive experience in various industries, including Education, Healthcare, Financial Services, Public Sector, Retail and E-Commerce, and Transportation and Logistics. We have a strong reputation for delivering customer-centric solutions that meet the client's expectations and improve their business outcomes.",
+
+  "problem_statement": "The client is facing significant challenges with their current software, leading to inefficiencies, increased costs, and decreased productivity. The outdated system is causing manual errors, affecting business operations, and hindering growth.",
+  "proposed_solution": "We propose a cutting-edge software solution that will automate business processes, reduce costs, and improve efficiency. Our innovative approach will ensure a scalable, secure, and user-friendly system that meets the client's growing business needs.",
+  "solution_phases": [
+    "Requirements Gathering and Analysis",
+    "Design and Prototyping Phase",
+    "Testing and Quality Assurance Phase",
+    "Deployment and Maintenance Phase"
+  ],
+  "project_schedule": [
+    {"name": "Phase 1", "description": "Requirements Gathering and Analysis", "start_date": "2025-05-05", "end_date": "2025-05-26"},
+    {"name": "Phase 2", "description": "Design and Prototyping", "start_date": "2025-05-27", "end_date": "2025-06-17"},
+    {"name": "Phase 3", "description": "Testing and Quality Assurance", "start_date": "2025-06-18", "end_date": "2025-07-09"},
+    {"name": "Phase 4", "description": "Deployment and Maintenance", "start_date": "2025-07-10", "end_date": "2025-07-31"}
+  ],
+  "team_members": [
+    {"name": "Rahul", "role": "Project Manager", "bio": "Rahul has 8+ years of experience in managing software development projects. He has expertise in Agile methodologies and ensures timely delivery of projects."},
+    {"name": "Neha Gupta", "role": "Senior Web Developer", "bio": "Neha has 6+ years of experience in web applications using technologies like HTML, CSS, and JavaScript. She is proficient in developing responsive and scalable web applications."},
+    {"name": "Amit Kumar", "role": "Quality Assurance Engineer", "bio": "Amit has 4+ years of experience in testing web applications. He is knowledgeable in testing frameworks like Selenium and has expertise in creating test cases and test scripts."}
+  ],
+  "technology_stack": {
+    "Web Development": ["HTML", "CSS", "JavaScript"],
+    "Quality Assurance": ["Selenium", "TestNG"],
+    "Deployment and Maintenance": ["AWS", "Azure"]
+  },
+  "why_us": [
+    "Our team of experts has extensive experience in delivering customer-centric solutions.",
+    "We have a strong reputation for delivering high-quality, scalable, and robust technology solutions.",
+    "Our innovative approach ensures timely project completion and minimal business impact."
+  ],
+  "pricing": [
+        {"description": "Web Development", "cost": "₹ 4,50,000"},
+        {"description": "Quality Assurance", "cost": "₹ 1,80,000"},
+        {"description": "Deployment and Maintenance", "cost": "₹ 90,000"}
+      ],
+  "total_cost": "₹ 6,20,000",
+  "current_year": 2025
+}
+using filtered data
+Here is the generated proposal in the specified JSON format:
+
+```
+{
+    "company_name": "DRC Systems India Limited.",
+    "company_email": "contact@drcsystems.com",
+    "client_name": "EdTech Client",
+    "project_title": "AI-Powered EdTech Platform for Personalized Learning",
+    "proposal_date": "2025-05-02",
+    "executive_summary": "We are thrilled to present a cutting-edge EdTech solution that addresses the pressing need for personalized learning, accessibility, and engagement in the education sector. Our innovative platform leverages AI, AR, and analytics to provide a student-centric experience, resulting in improved learning outcomes and enhanced educator support. With a proven track record of delivering successful projects, we are confident in our ability to meet and exceed your expectations.",
+    "about_company": "DRC Systems India Limited is a prominent software development company with over 12 years of experience in delivering innovative technology solutions. We have a strong reputation, dynamic approach to technology, and a team of over 300 professionals. Our extensive experience in the education sector has equipped us with the necessary expertise to develop effective EdTech platforms that cater to the diverse needs of students and educators alike.",
+    "problem_statement": "Traditional learning methods lack personalization, accessibility, and engagement, resulting in ineffective education for students with diverse linguistic and cognitive abilities. This limitation not only affects student learning outcomes but also creates unequal opportunities for students with special needs. It is essential to develop an innovative EdTech platform that addresses these challenges and provides a student-centric approach to education.",
+    "proposed_solution": "Our proposed solution is an AI-powered EdTech platform that leverages AR, multilingual, and analytics support to provide personalized learning experiences, adaptive learning strategies, and immersive AR and VR experiences. This platform will ensure inclusion and accessibility for students with special needs, resulting in improved learning outcomes and enhanced educator support.",
+    "solution_phases": [
+        "Platform Design and Development",
+        "AR and VR Integration",
+        "Analytics and Reporting"
+    ],
+    "project_schedule": [
+        {"name": "Phase 1", "description": "Platform Design and Development", "start_date": "2025-05-10", "end_date": "2025-07-10"},
+        {"name": "Phase 2", "description": "AR and VR Integration", "start_date": "2025-07-15", "end_date": "2025-09-15"},
+        {"name": "Phase 3", "description": "Analytics and Reporting", "start_date": "2025-09-20", "end_date": "2025-11-20"}
+    ],
+    "team_members": [
+        {"name": "Rahul Jain", "role": "Project Manager",
+        "bio": "Rahul has 8+ years of experience in managing projects and ensuring timely delivery. He has expertise in Agile methodologies and has worked with multiple clients across various domains."
+        },
+        {"name": "Neha Gupta", "role": "Senior Web Developer",
+        "bio": "Neha has 5+ years of experience in web development using technologies like HTML, CSS, JavaScript, and React. She has worked on multiple projects and has expertise in responsive design."
+        },
+        {"name": "Amit Kumar", "role": "QA Engineer",
+        "bio": "Amit has 3+ years of experience in quality assurance and has worked on multiple projects. He has expertise in testing methodologies and has worked with multiple clients across various domains."
+        }
+    ],
+    "technology_stack": {
+        "Web Development": ["HTML", "CSS", "JavaScript", "React"],
+        "Mobile App Development": ["Java", "Swift", "Kotlin"],
+        "AR and VR Development": ["Unity", "ARKit", "VRKit"],
+        "Analytics and Reporting": ["Tableau", "Google Analytics", "Power BI"]
+    },
+    "why_us": [
+        "Proven track record of delivering successful projects",
+        "Dynamic approach to technology and innovation",
+        "Team of highly skilled professionals with extensive experience in the education sector"
+    ],
+    "pricing": [
+        {
+            "description": "Platform Design and Development",
+            "cost": "₹ 2,50,000"
+        },
+        {
+            "description": "AR and VR Integration",
+            "cost": "₹ 3,50,000"
+        },
+        {
+            "description": "Analytics and Reporting",
+            "cost": "₹ 1,50,000"
+        }
+    ],
+    "total_cost": "₹ 7,50,000",
+    "current_year": 2025
+}
+```
+Note: The prices are generated based on the Indian market standards and may vary depending on the actual project requirements. The team members' names, roles, and bios are generated randomly.
+Filtered JSON :  {
+    "company_name": "DRC Systems India Limited.",
+    "company_email": "contact@drcsystems.com",
+    "client_name": "EdTech Client",
+    "project_title": "AI-Powered EdTech Platform for Personalized Learning",
+    "proposal_date": "2025-05-02",
+    "executive_summary": "We are thrilled to present a cutting-edge EdTech solution that addresses the pressing need for personalized learning, accessibility, and engagement in the education sector. Our innovative platform leverages AI, AR, and analytics to provide a student-centric experience, resulting in improved learning outcomes and enhanced educator support. With a proven track record of delivering successful projects, we are confident in our ability to meet and exceed your expectations.",
+    "about_company": "DRC Systems India Limited is a prominent software development company with over 12 years of experience in delivering innovative technology solutions. We have a strong reputation, dynamic approach to technology, and a team of over 300 professionals. Our extensive experience in the education sector has equipped us with the necessary expertise to develop effective EdTech platforms that cater to the diverse needs of students and educators alike.",
+    "problem_statement": "Traditional learning methods lack personalization, accessibility, and engagement, resulting in ineffective education for students with diverse linguistic and cognitive abilities. This limitation not only affects student learning outcomes but also creates unequal opportunities for students with special needs. It is essential to develop an innovative EdTech platform that addresses these challenges and provides a student-centric approach to education.",
+    "proposed_solution": "Our proposed solution is an AI-powered EdTech platform that leverages AR, multilingual, and analytics support to provide personalized learning experiences, adaptive learning strategies, and immersive AR and VR experiences. This platform will ensure inclusion and accessibility for students with special needs, resulting in improved learning outcomes and enhanced educator support.",
+    "solution_phases": [
+        "Platform Design and Development",
+        "AR and VR Integration",
+        "Analytics and Reporting"
+    ],
+    "project_schedule": [
+        {"name": "Phase 1", "description": "Platform Design and Development", "start_date": "2025-05-10", "end_date": "2025-07-10"},
+        {"name": "Phase 2", "description": "AR and VR Integration", "start_date": "2025-07-15", "end_date": "2025-09-15"},
+        {"name": "Phase 3", "description": "Analytics and Reporting", "start_date": "2025-09-20", "end_date": "2025-11-20"}
+    ],
+    "team_members": [
+        {"name": "Rahul Jain", "role": "Project Manager",
+        "bio": "Rahul has 8+ years of experience in managing projects and ensuring timely delivery. He has expertise in Agile methodologies and has worked with multiple clients across various domains."
+        },
+        {"name": "Neha Gupta", "role": "Senior Web Developer",
+        "bio": "Neha has 5+ years of experience in web development using technologies like HTML, CSS, JavaScript, and React. She has worked on multiple projects and has expertise in responsive design."
+        },
+        {"name": "Amit Kumar", "role": "QA Engineer",
+        "bio": "Amit has 3+ years of experience in quality assurance and has worked on multiple projects. He has expertise in testing methodologies and has worked with multiple clients across various domains."
+        }
+    ],
+    "technology_stack": {
+        "Web Development": ["HTML", "CSS", "JavaScript", "React"],
+        "Mobile App Development": ["Java", "Swift", "Kotlin"],
+        "AR and VR Development": ["Unity", "ARKit", "VRKit"],
+        "Analytics and Reporting": ["Tableau", "Google Analytics", "Power BI"]
+    },
+    "why_us": [
+        "Proven track record of delivering successful projects",
+        "Dynamic approach to technology and innovation",
+        "Team of highly skilled professionals with extensive experience in the education sector"
+    ],
+    "pricing": [
+        {
+            "description": "Platform Design and Development",
+            "cost": "₹ 2,50,000"
+        },
+        {
+            "description": "AR and VR Integration",
+            "cost": "₹ 3,50,000"
+        },
+        {
+            "description": "Analytics and Reporting",
+            "cost": "₹ 1,50,000"
+        }
+    ],
+    "total_cost": "₹ 7,50,000",
+    "current_year": 2025
+}
+using filtered data
+2025-05-02 14:06:10.316 Received event for non-watched file: /home/niteshchauhan/PycharmProjects/Company_Proposal/app.py
+Here is the generated proposal in the specified JSON format:
+
+```
+{
+    "company_name": "DRC Systems India Limited",
+    "company_email": "contact@drcsystems.com",
+    "client_name": "Client Name",
+    "project_title": "Revolutionizing Education with AR, NLP, and Multilingual Support",
+    "proposal_date": "2025-05-02",
+    "executive_summary": "DRC Systems proposes a cutting-edge education platform that integrates Augmented Reality (AR), Natural Language Processing (NLP), and Multilingual Support to provide personalized, engaging, and accessible education for students of all linguistic and cognitive abilities. Our solution will revolutionize traditional learning, increase student engagement, and improve comprehension. With our expertise in AI, NLP, and AR, we are confident in delivering a high-quality, scalable, and robust technology solution that exceeds client expectations.",
+    "about_company": "DRC Systems India Limited is a prominent software development company established in 2012, known for its dynamic approach to technology, expansive industry reach, and a team of highly skilled professionals. With over 12 years of experience in the field, we have developed a strong reputation for delivering high-quality, scalable, and robust technology solutions that meet the evolving needs of our clients.",
+
+    "problem_statement": "The client is facing a significant challenge in providing personalized, engaging, and accessible education to students of diverse linguistic and cognitive abilities. The current traditional learning approach lacks the necessary tools and technology to cater to the unique needs of each student, resulting in poor engagement, comprehension, and overall learning outcomes.",
+    "proposed_solution": "Our proposed solution is an innovative education platform that integrates AR, NLP, and Multilingual Support to provide personalized, engaging, and accessible education. Our solution will utilize AI-driven insights to provide adaptive learning strategies, immersive AR and VR experiences, and comprehensive analytics for performance monitoring and improvement.",
+    "solution_phases": [
+        "Phase 1: Requirements Gathering and Analysis",
+        "Phase 2: Design and Prototyping",
+        "Phase 3: Testing and Quality Assurance"
+    ],
+    "project_schedule": [
+        {"name": "Phase 1", "description": "Requirements Gathering and Analysis", "start_date": "2025-05-02", "end_date": "2025-05-16"},
+        {"name": "Phase 2", "description": "Design and Prototyping", "start_date": "2025-05-17", "end_date": "2025-06-14"},
+        {"name": "Phase 3", "description": "Testing and Quality Assurance", "start_date": "2025-06-15", "end_date": "2025-07-12"},
+        {"name": "Phase 4", "description": "Deployment and Maintenance", "start_date": "2025-07-13", "end_date": "2025-08-09"}
+    ],
+    "team_members": [
+        {"name": "Rahul Kumar", "role": "Project Manager", "bio": "Rahul has 5+ years of experience in managing projects related to web development and digital marketing. He has a strong understanding of Agile methodologies and has successfully delivered multiple projects on time."},
+        {"name": "Priya Singh", "role": "UX Designer", "bio": "Priya is a seasoned UX designer with 3+ years of experience in creating engaging and informative designs for various industries. She has a strong understanding of human-centered design principles and has designed multiple websites and applications."}
+    ],
+    "technology_stack": {
+            "Frontend": ["React", "Three.js"],
+            "Backend": ["Node.js", "Express.js"],
+            "Database": ["MongoDB", "Redis"],
+            "AR/VR": ["AR.js", "A-Frame"],
+            "NLP": ["NLTK", "spaCy"],
+            "Multilingual Support": ["Google Translate API", "Microsoft Translator Text API"]
+        },
+        "why_us": [
+            "Our team of experts has extensive experience in AI, NLP, and AR development",
+            "We have a strong understanding of the education industry and its unique challenges",
+            "We have a proven track record of high-quality, scalable technology solutions"
+        ],
+        "pricing": [
+            {"description": "Web Development", "cost": "₹3,50,000"},
+            {"description": "Content Creation", "cost": "₹1,20,000"},
+            {"description": "Digital Marketing", "cost": "₹4,00,000"}
+        ],
+        "total_cost": "₹9,70,000"
+    }
+}
+```
+Filtered JSON :  {
+    "company_name": "DRC Systems India Limited",
+    "company_email": "contact@drcsystems.com",
+    "client_name": "Client Name",
+    "project_title": "Revolutionizing Education with AR, NLP, and Multilingual Support",
+    "proposal_date": "2025-05-02",
+    "executive_summary": "DRC Systems proposes a cutting-edge education platform that integrates Augmented Reality (AR), Natural Language Processing (NLP), and Multilingual Support to provide personalized, engaging, and accessible education for students of all linguistic and cognitive abilities. Our solution will revolutionize traditional learning, increase student engagement, and improve comprehension. With our expertise in AI, NLP, and AR, we are confident in delivering a high-quality, scalable, and robust technology solution that exceeds client expectations.",
+    "about_company": "DRC Systems India Limited is a prominent software development company established in 2012, known for its dynamic approach to technology, expansive industry reach, and a team of highly skilled professionals. With over 12 years of experience in the field, we have developed a strong reputation for delivering high-quality, scalable, and robust technology solutions that meet the evolving needs of our clients.",
+
+    "problem_statement": "The client is facing a significant challenge in providing personalized, engaging, and accessible education to students of diverse linguistic and cognitive abilities. The current traditional learning approach lacks the necessary tools and technology to cater to the unique needs of each student, resulting in poor engagement, comprehension, and overall learning outcomes.",
+    "proposed_solution": "Our proposed solution is an innovative education platform that integrates AR, NLP, and Multilingual Support to provide personalized, engaging, and accessible education. Our solution will utilize AI-driven insights to provide adaptive learning strategies, immersive AR and VR experiences, and comprehensive analytics for performance monitoring and improvement.",
+    "solution_phases": [
+        "Phase 1: Requirements Gathering and Analysis",
+        "Phase 2: Design and Prototyping",
+        "Phase 3: Testing and Quality Assurance"
+    ],
+    "project_schedule": [
+        {"name": "Phase 1", "description": "Requirements Gathering and Analysis", "start_date": "2025-05-02", "end_date": "2025-05-16"},
+        {"name": "Phase 2", "description": "Design and Prototyping", "start_date": "2025-05-17", "end_date": "2025-06-14"},
+        {"name": "Phase 3", "description": "Testing and Quality Assurance", "start_date": "2025-06-15", "end_date": "2025-07-12"},
+        {"name": "Phase 4", "description": "Deployment and Maintenance", "start_date": "2025-07-13", "end_date": "2025-08-09"}
+    ],
+    "team_members": [
+        {"name": "Rahul Kumar", "role": "Project Manager", "bio": "Rahul has 5+ years of experience in managing projects related to web development and digital marketing. He has a strong understanding of Agile methodologies and has successfully delivered multiple projects on time."},
+        {"name": "Priya Singh", "role": "UX Designer", "bio": "Priya is a seasoned UX designer with 3+ years of experience in creating engaging and informative designs for various industries. She has a strong understanding of human-centered design principles and has designed multiple websites and applications."}
+    ],
+    "technology_stack": {
+            "Frontend": ["React", "Three.js"],
+            "Backend": ["Node.js", "Express.js"],
+            "Database": ["MongoDB", "Redis"],
+            "AR/VR": ["AR.js", "A-Frame"],
+            "NLP": ["NLTK", "spaCy"],
+            "Multilingual Support": ["Google Translate API", "Microsoft Translator Text API"]
+        },
+        "why_us": [
+            "Our team of experts has extensive experience in AI, NLP, and AR development",
+            "We have a strong understanding of the education industry and its unique challenges",
+            "We have a proven track record of high-quality, scalable technology solutions"
+        ],
+        "pricing": [
+            {"description": "Web Development", "cost": "₹3,50,000"},
+            {"description": "Content Creation", "cost": "₹1,20,000"},
+            {"description": "Digital Marketing", "cost": "₹4,00,000"}
+        ],
+        "total_cost": "₹9,70,000"
+    }
+}
