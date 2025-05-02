@@ -91,7 +91,8 @@ try:
             HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
             with open("documents/proposal.pdf", "rb") as file:
                     st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
-
+        else:
+            st.write("Please try after sometime model limit is reached!")
         # if st.button("Download as PDF"):
         #     HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
         #     with open("documents/proposal.pdf", "rb") as file:

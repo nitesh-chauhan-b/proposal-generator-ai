@@ -10,7 +10,10 @@ from datetime import date
 load_dotenv()
 
 #Setting LLM model
-llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
+# llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
+
+#Changing llm model
+llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
 
 #Testing
 # print(llm.invoke("hello"))
@@ -261,9 +264,10 @@ def create_proposal(client_requirements,company_quatation,company_details):
             }},
         ],
         "technology_stack": {{
-            "Domain Name 1" : [Technoloys used for this domian ],
-            "Domain Name 2" : [Technoloys used for this domian ],
-            "Domain Name 3" : [Technoloys used for this domian ],
+            {{"Domain Name 1" : [Technology used for this domain ]}},
+            {{"Domain Name 1" : [Technology used for this domain ]}},
+            {{"Domain Name 1" : [Technology used for this domain ]}},
+
         }},
         "why_us": [
             "Reason 1",
