@@ -6,6 +6,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.prompts import PromptTemplate
 import untils
 from datetime import date
+import re
 
 load_dotenv()
 
@@ -308,9 +309,18 @@ def create_proposal(client_requirements,company_quatation,company_details):
     #Getting proposal
     response = proposal_chain.invoke(input={"client_requirements": client_requirements, "quatation_details": company_quatation,"company_details":company_details,"today_date":today_date})
 
-    #Printing the proposal
-    print("\n\n Unfiltered Response : \n\n",response.content)
-    return response.content
+
+
+    #Filtering company proposal for JSON parsing
+    pattern = re.compile(r'\{[\s\S]*\}', re.DOTALL)
+    match = pattern.search(response.content)
+
+    company_proposal = match.group(0)
+
+    # Printing the proposal
+    print("\n\n Filtered JSON Response : \n\n", company_proposal)
+
+    return company_proposal
 
 
 if __name__ == "__main__":

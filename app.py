@@ -48,26 +48,21 @@ try:
 
         company_proposal = helper.create_proposal(client_req,company_quatation,company_details)
 
-        #Filtering the text
-
-        pattern = re.compile(r'\{[\s\S]*\}', re.DOTALL)
-        match = pattern.search(company_proposal)
-
-
-        temp = match.group(0)
-        print("\n\nFiltered JSON : \n\n",temp)
-        filtered_proposal = temp
+        # #Filtering the text
+        #
+        # pattern = re.compile(r'\{[\s\S]*\}', re.DOTALL)
+        # match = pattern.search(company_proposal)
+        #
+        #
+        # temp = match.group(0)
+        # print("\n\nFiltered JSON : \n\n",temp)
+        # filtered_proposal = temp
 
 
         #Converting data into JSON
 
         json_parser = JsonOutputParser()
-        if filtered_proposal:
-            company_proposal = json_parser.parse(filtered_proposal)
-            print("using filtered data")
-        else:
-            company_proposal = json_parser.parse(company_proposal)
-            print("using default data")
+        company_proposal = json_parser.parse(company_proposal)
             # json_parser = PydanticOutputParser(pydantic_object=Proposal)
             #
             # company_proposal = json_parser.parse(company_proposal)
