@@ -1,14 +1,9 @@
 import streamlit as st
 import os
 from jinja2 import Environment, FileSystemLoader
-from langchain_community.document_loaders import PyPDFLoader  # For extracting text
 from weasyprint import HTML
 import langchain_helper as helper
-import json
 from langchain_core.output_parsers import PydanticOutputParser,JsonOutputParser
-from io import StringIO,BytesIO
-import re
-from models import Proposal
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))

@@ -183,6 +183,31 @@
       <p>{{ proposed_solution }}</p>
     </div>
 
+<!-- Task Breakdown -->
+    <div class="section">
+      <h2>Task Breakdown</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 60%;">Task / Sub-Task</th>
+            <th style="width: 30%;">Estimated Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in task_breakdown %}
+            <tr>
+              <td colspan="2" style="background-color: #f9f9f9; font-weight: bold;">{{ task.name }}</td>
+            </tr>
+            {% for sub in task.subtasks %}
+            <tr>
+              <td style="padding-left: 20px;">{{ sub.name }}</td>
+              <td>{{ sub.hours }}</td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
     <!-- Team Members Involved -->
     <div class="section">

@@ -7,14 +7,22 @@ from langchain.prompts import PromptTemplate
 import untils
 from datetime import date
 import re
-
+from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 #Setting LLM model
 # llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
 
 #Changing llm model
-llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
+# llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
+
+# #Changing llm model
+llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",temperature=0.7)
+# llm = ChatGroq(model="llama-3.3-70b-versatile",temperature=0.6)
+
+
+#Using google LLM
+# llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
 
 #Testing
 # print(llm.invoke("hello"))
@@ -213,87 +221,114 @@ def create_proposal(client_requirements,company_quatation,company_details):
     # Another prompt
     proposal_template = """
 
-    You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+        You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
 
-    ## Instructions
-    1. Analyze the given information in depth.
-    2. Create an innovative proposal for the client to provide a suitable software solution.
-    3. Extract the required information and convert it into the exact JSON format specified below.
-    4. In solution_phases generate the phases of solution based on the given information
-    5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
-    
-    
-    ## Client Requirements
-    {client_requirements}
+        ## Instructions
+        1. Analyze the given information in depth.
+        2. Create an innovative proposal for the client to provide a suitable software solution.
+        3. Extract the required information and convert it into the exact JSON format specified below.
+        4. In solution_phases generate the phases of solution based on the given information
+        5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
+        6. For Task Breakdown section analyse the project schedule, team_members, technology_stack and then based on this details generate the task breakdown of the project in terms of the technology used and also make sure to calculate the estimated hours based on the project schedule and you can generate the as many realist tasks as possible. 
 
-    ## Company Quotation
-    {quatation_details}
+        ## Client Requirements
+        {client_requirements}
 
-    # Company Details
-    {company_details}
-    
-    ## Required JSON Format
-  
-    {{
-        "company_name": "Company Name",
-        "company_email": "contact@yourcompany.com",
-        "client_name": "Client Name",
-        "project_title": "Title of the project",
-        "proposal_date":"{today_date}",
-        "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
-        "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+        ## Company Quotation
+        {quatation_details}
 
-        "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
-        "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value",
-        "solution_phases": [
-            "proposed solution phase 1",
-            "proposed solution phase 2",
-            "proposed solution phase 3"
-        ],
-        "project_schedule": [
-            {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
-            {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
-            {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
-            {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
-        ],
-        "team_members": [
-            {{"name": "Random Indian Person Name", "role": "Role in project",
-            "bio" :"Generate bio about team member in short respective to their domain"
+        # Company Details
+        {company_details}
+
+        ## Required JSON Format
+
+        {{
+            "company_name": "Company Name",
+            "company_email": "contact@yourcompany.com",
+            "client_name": "Client Name",
+            "project_title": "Title of the project",
+            "proposal_date":"{today_date}",
+            "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
+            "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+
+            "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
+            "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value. Make it at least about 8-10 lines",
+            "solution_phases": [
+                "proposed solution phase 1",
+                "proposed solution phase 2",
+                "proposed solution phase 3"
+            ],
+            "project_schedule": [
+                {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
+            ],
+
+            "team_members": [
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+            ],
+            "technology_stack": {{
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+
             }},
-            {{"name": "Random Indian Person Name", "role": "Role in project",
-            "bio" :"Generate bio about team member in short respective to their domain"
-            }},
-        ],
-        "technology_stack": {{
-            {{"Domain Name 1" : [Technology used for this domain ]}},
-            {{"Domain Name 1" : [Technology used for this domain ]}},
-            {{"Domain Name 1" : [Technology used for this domain ]}},
-
-        }},
-        "why_us": [
-            "Reason 1",
-            "Reason 2",
-            "Reason 3"
-        ],
-        "pricing": [
+            
+        "task_breakdown": [
             {{
-                "description": "pricing description 1 ",
-                "cost": "relavent price"
-            }},
-            {{
-                "description": "pricing description 2",
-                "cost": "relavent price"
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
             }},
             {{
-                "description": "pricing description 3",
-                "cost": "relavent price"
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
             }},
+            {{
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
+            }},
+            "why_us": [
+                "Reason 1",
+                "Reason 2",
+                "Reason 3"
+            ],
+            "pricing": [
+                {{
+                    "description": "pricing description 1 ",
+                    "cost": "relevant price"
+                }},
+                {{
+                    "description": "pricing description 2",
+                    "cost": "relevant price"
+                }},
+                {{
+                    "description": "pricing description 3",
+                    "cost": "relevant price"
+                }},
 
-        ],
-        "total_cost": "Calculate the total cost accoring to the price",
-        "current_year": 2025
-    }}
-    """
+            ],
+            "total_cost": "Calculate the total cost according to the price",
+            "current_year": 2025
+        }}
+        """
 
     #Getting current data
     today_date = date.today()
