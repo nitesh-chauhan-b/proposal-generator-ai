@@ -4,141 +4,263 @@
   <meta charset="UTF-8">
   <title>{{ project_title }} - Proposal</title>
   <style>
+    @page {
+      size: A4;
+      margin: 2cm;
+    }
+
+    :root {
+      --primary-color: #693a95;
+      --secondary-color: #cfa357;
+      --text-color: #4d4e4e;
+      --border-color: #e5e7eb;
+      --background-color: #ffffff;
+      --accent-color: #8b5db1;
+      --gradient-start: #693a95;
+      --gradient-end: #cfa357;
+      --card-bg: #faf9f8;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 15px;
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
+      font-size: 11pt;
       line-height: 1.6;
-      color: #2c2c2c;
+      color: var(--text-color);
       margin: 0;
       padding: 0;
-      /* background-color: #fafafa; */
+      background-color: #ffffff;
     }
 
     .container {
-      max-width: 850px;
-      margin: 50px auto;
-      background: white;
-      padding: 50px;
-      border-radius: 10px;
-    }
-
-    p{
-      text-align: justify;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 0px;
-    }
-    header p{
-      text-align: center;
-    }
-
-    header img {
-      max-height: 60px;
-      margin-bottom: 10px;
-    }
-
-    h1, h2, h3 {
-      color: #111;
-    }
-
-    h1 {
-      font-size: 30px;
-      margin-bottom: 0;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-top: 40px;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 8px;
+      width: 100%;
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 20mm 0;
+      background: var(--background-color);
     }
 
     p {
-      margin-bottom: 15px;
+      margin: 0 0 1em 0;
+      text-align: justify;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40pt;
+      padding: 20pt;
+      background-color: #ffffff;
+      border-bottom: 2pt solid var(--primary-color);
+    }
+
+    header img {
+      max-height: 60pt;
+      margin-bottom: 15pt;
+    }
+
+    .section-icon {
+      text-align: center;
+      margin-bottom: 15pt;
+    }
+
+    .section-icon svg {
+      width: 30pt;
+      height: 30pt;
+      fill: var(--primary-color);
+    }
+
+    h1, h2, h3 {
+      color: var(--primary-color);
+      margin: 0 0 15pt 0;
+      page-break-after: avoid;
+    }
+
+    h1 {
+      font-size: 24pt;
+      color: var(--primary-color);
+    }
+
+    h2 {
+      font-size: 16pt;
+      border-bottom: 1pt solid var(--border-color);
+      padding-bottom: 5pt;
+      margin-top: 25pt;
+    }
+
+    h3 {
+      font-size: 13pt;
     }
 
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 30pt;
+      padding: 15pt;
+      page-break-inside: avoid;
     }
 
-    .about-company img {
-      max-height: 80px;
-      margin-right: 15px;
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15pt;
+      margin: 15pt 0;
     }
 
-    .client-logos {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+    .benefit-card {
+      background-color: #ffffff;
+      padding: 10pt;
+      border: 1pt solid var(--border-color);
+      border-left: 3pt solid var(--primary-color);
     }
 
-    .client-logos img {
-      max-height: 50px;
-      opacity: 0.8;
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15pt;
+      margin: 15pt 0;
     }
 
-    .highlight {
-      background-color: #f0f0f0;
-      padding: 10px 15px;
-      border-left: 4px solid #999;
-      margin: 20px 0;
+    .tech-card {
+      background-color: #ffffff;
+      padding: 10pt;
+      border: 1pt solid var(--border-color);
+      text-align: center;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      margin: 15pt 0;
+      page-break-inside: auto;
     }
 
-    table, th, td {
-      border: 1px solid #ddd;
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
     }
 
     th, td {
-      padding: 10px;
+      padding: 8pt;
       text-align: left;
+      border: 1pt solid var(--border-color);
     }
 
     th {
-      background-color: #f5f5f5;
+      background-color: #f8f8f8;
+      font-weight: bold;
+      color: var(--primary-color);
     }
 
     .price-table td, .price-table th {
       text-align: right;
     }
 
+    .highlight {
+      background-color: #f8f8f8;
+      padding: 10pt;
+      margin: 15pt 0;
+      border-left: 3pt solid var(--primary-color);
+    }
+
     .approval {
       page-break-before: always;
-      /* margin-top: 60px; */
-      /* padding-top: 30px;*/
-      /*border-top: 1px solid #ccc;*/
+      margin-top: 30pt;
+      padding: 15pt;
+      background-color: #ffffff;
+      border: 1pt solid var(--border-color);
     }
 
     .approval p {
-      margin-bottom: 40px;
+      margin-bottom: 20pt;
     }
 
     .footer {
       text-align: center;
-      font-size: 13px;
-      color: #888;
-      margin-top: 60px;
+      font-size: 9pt;
+      color: #666;
+      margin-top: 30pt;
+      padding-top: 10pt;
+      border-top: 1pt solid var(--border-color);
     }
 
     ol {
-      padding-left: 20px;
+      padding-left: 20pt;
+      margin: 15pt 0;
+      list-style-type: decimal;
     }
 
     ol li {
-      margin-bottom: 8px;
+      margin-bottom: 8pt;
+      padding-left: 5pt;
+    }
+
+    .client-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15pt;
+      justify-content: center;
+      align-items: center;
+      margin: 15pt 0;
+    }
+
+    .client-logos img {
+      max-height: 40pt;
+      object-fit: contain;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff;
+      }
+
+      .container {
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+
+      table {
+        break-inside: auto;
+      }
+
+      tr {
+        break-inside: avoid;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tfoot {
+        display: table-footer-group;
+      }
+
+      .approval {
+        break-before: always;
+      }
+
+      .footer {
+        position: running(footer);
+      }
+
+      @page {
+        margin: 2cm;
+        @bottom-center {
+          content: element(footer);
+        }
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-
     <!-- Cover -->
     <header>
       <img src="assets/drc_logo.svg" alt="DRC Systems India Limited." height="50px">
@@ -149,12 +271,22 @@
 
     <!-- Summary -->
     <div class="section">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M14,10H2V12H14V10M14,6H2V8H14V6M2,16H10V14H2V16M21.5,11.5L23,13L16,20L11.5,15.5L13,14L16,17L21.5,11.5Z"/>
+        </svg>
+      </div>
       <h2>Executive Summary</h2>
       <p>{{ executive_summary }}</p>
     </div>
 
     <!-- About the Company -->
     <div class="section about-company">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+        </svg>
+      </div>
       <h2>About {{ company_name }}</h2>
       <p>{{ about_company }}</p>
       {% if client_logos %}
@@ -169,16 +301,28 @@
 
     <!-- Why Choose Us -->
     <div class="section">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/>
+        </svg>
+      </div>
       <h2>Why You Should Hire Us</h2>
-      <ul>
+      <div class="benefits-grid">
         {% for reason in why_us %}
-          <li>{{ reason }}</li>
+          <div class="benefit-card">
+            <p>{{ reason }}</p>
+          </div>
         {% endfor %}
-      </ul>
+      </div>
     </div>
 
     <!-- Proposed Solution -->
     <div class="section">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z"/>
+        </svg>
+      </div>
       <h2>Proposed Solution</h2>
       <p>{{ proposed_solution }}</p>
     </div>
@@ -232,29 +376,23 @@
       </table>
     </div>
 
-
-
     <!-- Technology Stack -->
     <div class="section">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M13,19H14A1,1 0 0,1 15,20H22V22H15A1,1 0 0,1 14,23H10A1,1 0 0,1 9,22H2V20H9A1,1 0 0,1 10,19H11V17H4A1,1 0 0,1 3,16V12A1,1 0 0,1 4,11H20A1,1 0 0,1 21,12V16A1,1 0 0,1 20,17H13V19M4,3H20A1,1 0 0,1 21,4V8A1,1 0 0,1 20,9H4A1,1 0 0,1 3,8V4A1,1 0 0,1 4,3M9,7H10V5H9V7M9,15H10V13H9V15M5,7H7V5H5V7M5,15H7V13H5V15Z"/>
+        </svg>
+      </div>
       <h2>Technology Stack</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%;">Category</th>
-            <th>Technologies</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for category, techs in technology_stack.items() %}
-          <tr>
-            <td>{{ category }}</td>
-            <td>{{ ", ".join(techs) }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="tech-grid">
+        {% for category, techs in technology_stack.items() %}
+        <div class="tech-card">
+          <h3>{{ category }}</h3>
+          <p>{{ ", ".join(techs) }}</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-
 
     <!-- Project Timeline -->
     <div class="section">
@@ -306,7 +444,6 @@
       </table>
     </div>
 
-
     <!-- Terms and Conditions -->
     <div class="section">
       <h2>Terms and Conditions</h2>
@@ -316,7 +453,6 @@
         <li>Any changes in project scope may result in additional charges and timeline adjustments.</li>
         <li>DRC Systems retains the right to use the completed project as part of its portfolio unless explicitly restricted.</li>
         <li>Payment terms will be outlined in the formal contract agreement following proposal approval.</li>
-<!--        <li>Client cooperation, timely approvals, and clear communication are required for smooth execution.</li>-->
         <li>Intellectual property rights for all deliverables will be transferred upon full payment.</li>
         <li>This proposal is valid for a period of 30 days from the date of issuance. After this period, terms including pricing and timelines may be subject to revision.</li>
       </ol>

@@ -78,9 +78,12 @@ try:
             st.components.v1.html(proposal_html, height=500, scrolling=True)
 
             # Buttons for Download
-            HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
-            with open("documents/proposal.pdf", "rb") as file:
-                    st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
+            try:
+                HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
+                with open("documents/proposal.pdf", "rb") as file:
+                        st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
+            except Exception as e:
+                st.write("There is pdf rendering problem please try again.")
         else:
             st.write("Please try after sometime model limit is reached!")
         # if st.button("Download as PDF"):
