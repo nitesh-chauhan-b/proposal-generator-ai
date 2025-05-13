@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ project_title }} - Proposal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 40px;
+    }
+    header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    header img {
+      max-height: 80px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+    h2 {
+      font-size: 24px;
+      color: #2c3e50;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 5px;
+      margin-top: 40px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .client-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .client-logos img {
+      max-height: 50px;
+      opacity: 0.8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f9f9f9;
+    }
+    .price-table td, .price-table th {
+      text-align: right;
+    }
+    .approval {
+      page-break-before: always;
+      margin-top: 60px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-top: 60px;
+    }
+    ol {
+      padding-left: 20px;
+    }
+    ol li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cover -->
+    <header>
+      <img src="assets/drc_logo.svg" alt="DRC Systems India Limited.">
+      <h1>{{ project_title }}</h1>
+      <p><strong>Proposal for:</strong> {{ client_name }}<br>
+         <strong>Date:</strong> {{ proposal_date }}</p>
+    </header>
+
+    <!-- Executive Summary -->
+    <div class="section">
+      <h2>Executive Summary</h2>
+      <p>{{ executive_summary }}</p>
+    </div>
+
+    <!-- About the Company -->
+    <div class="section">
+      <h2>About {{ company_name }}</h2>
+      <p>{{ about_company }}</p>
+      {% if client_logos %}
+        <h3>Our Clients</h3>
+        <div class="client-logos">
+          {% for logo in client_logos %}
+            <img src="{{ logo }}" alt="Client Logo">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="section">
+      <h2>Why You Should Hire Us</h2>
+      <ul>
+        {% for reason in why_us %}
+          <li>{{ reason }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Proposed Solution -->
+    <div class="section">
+      <h2>Proposed Solution</h2>
+      <p>{{ proposed_solution }}</p>
+    </div>
+
+    <!-- Task Breakdown -->
+    <div class="section">
+      <h2>Task Breakdown</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 60%;">Task / Sub-Task</th>
+            <th style="width: 30%;">Estimated Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in task_breakdown %}
+            <tr>
+              <td colspan="2" style="background-color: #f9f9f9; font-weight: bold;">{{ task.name }}</td>
+            </tr>
+            {% for sub in task.subtasks %}
+            <tr>
+              <td style="padding-left: 20px;">{{ sub.name }}</td>
+              <td>{{ sub.hours }}</td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Team Members Involved -->
+    <div class="section">
+      <h2>Team Members Involved</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Name</th>
+            <th style="width: 20%;">Role</th>
+            <th>Bio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for member in team_members %}
+          <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.role }}</td>
+            <td style="font-size: 13px;">{{ member.bio }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="section">
+      <h2>Technology Stack</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%;">Category</th>
+            <th>Technologies</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category, techs in technology_stack.items() %}
+          <tr>
+            <td>{{ category }}</td>
+            <td>{{ ", ".join(techs) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Project Timeline -->
+    <div class="section">
+      <h2>Primary Project Schedule</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for phase in project_schedule %}
+          <tr>
+            <td>{{ phase.name }}</td>
+            <td>{{ phase.description }}</td>
+            <td>{{ phase.start_date }}</td>
+            <td>{{ phase.end_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pricing -->
+    <div class="section">
+      <h2>Pricing</h2>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pricing %}
+          <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.cost }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{{ total_cost }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="section">
+      <h2>Terms and Conditions</h2>
+      <ol>
+        <li>All information in this proposal is confidential and intended solely for {{ client_name }}.</li>
+        <li>The estimated costs mentioned are exclusive of taxes, unless otherwise specified.</li>
+        <li>Any changes in project scope may result in additional charges and timeline adjustments.</li>
+        <li>DRC Systems retains the right to use the completed project as part of its portfolio unless explicitly restricted.</li>
+        <li>Payment terms will be outlined in the formal contract agreement following proposal approval.</li>
+        <li>Intellectual property rights for all deliverables will be transferred upon full payment.</li>
+        <li>This proposal is valid for a period of 30 days from the date of issuance. After this period, terms including pricing and timelines may be subject to revision.</li>
+      </ol>
+    </div>
+
+    <!-- Approval -->
+    <div class="section approval">
+      <h2>Approval & Next Steps</h2>
+      <p>We look forward to collaborating on this project. Please confirm approval by signing below.</p>
+      <p>Client Name: ________________________</p>
+      <p>Signature: ____________________________</p>
+      <p>Date: ________________________________</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      &copy; {{ current_year }} {{ company_name }}. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

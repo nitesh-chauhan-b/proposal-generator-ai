@@ -249,14 +249,35 @@ def create_proposal(client_requirements,company_quatation,company_details):
             "project_title": "Title of the project",
             "proposal_date":"{today_date}",
             "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
-            "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail",
+              "project_goals": [
+                "State Objective 1 based on client’s needs and project summary",
+                "State Objective 2",
+                "State Objective 3"
+                "State Objective 4"
+                "State Objective 5"
+              ],
+              "success_metrics": [
+                "KPI 1 (e.g., project delivered within deadline)",
+                "KPI 2 (e.g., 99% uptime after deployment)",
+                "KPI 3 (e.g., reduced manual effort by 40%)",
+                "KPI 4 (e.g., reduced manual effort by 40%)",
+              ],
+            "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail in 10 lines",
 
             "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
             "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value. Make it at least about 8-10 lines",
+              "assumptions": [
+                "Assumption 1 (e.g., client will provide API access within 5 days)",
+                "Assumption 2 (e.g., timelines are dependent on prompt feedback)",
+                "Assumption 3 (e.g., third-party tools will be available and stable)",
+                "Assumption 4",
+                "Assumption 5"
+              ],
             "solution_phases": [
                 "proposed solution phase 1",
                 "proposed solution phase 2",
-                "proposed solution phase 3"
+                "proposed solution phase 3",
+                "proposed solution phase 4",
             ],
             "project_schedule": [
                 {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
@@ -306,10 +327,24 @@ def create_proposal(client_requirements,company_quatation,company_details):
             ]
             }},
             "why_us": [
-                "Reason 1",
-                "Reason 2",
-                "Reason 3"
+                "Detailed Reason 1",
+                "Detailed Reason 2",
+                "Detailed Reason 3"
             ],
+            "case_study": {{
+                "client": "Mention a past client or industry (can be anonymized)",
+                "challenge": "Summarize the client's challenge that was solved",
+                "solution": " In Detail Explain how your team solved it (tools, methods, etc.) at least 6 to 8 lines",
+                "results": "In detail Share the results or impact (e.g., increased efficiency, faster processing, better UX) in about 6-7 lines"
+              }},
+            "next_steps": [
+                "Proposal Approval",
+                "Contract Signing",
+                "Kickoff Meeting",
+                "Development Environment Setup",
+                "Project Execution Start"
+              ]
+            "support_details": "Describe the post-deployment support to be provided. Include bug fixes, monitoring, maintenance duration, and communication channels. Make it at leaset about 6 -8 lines",
             "pricing": [
                 {{
                     "description": "pricing description 1 ",
@@ -323,7 +358,6 @@ def create_proposal(client_requirements,company_quatation,company_details):
                     "description": "pricing description 3",
                     "cost": "relevant price"
                 }},
-
             ],
             "total_cost": "Calculate the total cost according to the price",
             "current_year": 2025

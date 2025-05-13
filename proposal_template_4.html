@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project_title }} Proposal</title>
+    <style>
+        /* Base styles for PDF rendering */
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-size: 12pt; /* Increased font size from 11pt */
+            background-color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px; /* Added padding to improve content spacing */
+        }
+
+        /* Header/Cover Page */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1.5cm 1cm;
+            text-align: center;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            margin-bottom: 1cm;
+        }
+
+        /* First page styling */
+        .first-page {
+            page-break-after: always;
+        }
+
+        /* Summary styling - specifically for the first page */
+        .summary-section {
+            padding-top: 0.5cm;
+        }
+
+        header img {
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 28pt; /* Increased from 26pt */
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 16pt; /* Increased from 14pt */
+            opacity: 0.9;
+            margin-top: 30px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 18pt 0; /* Increased padding */
+            margin-bottom: 18pt; /* Increased margin */
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-size: 18pt; /* Increased from 16pt */
+            color: #2c3e50;
+            margin-bottom: 18pt;
+            padding-bottom: 6pt;
+            border-bottom: 2px solid #3498db;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 16pt; /* Increased from 14pt */
+            color: #3498db;
+            margin: 18pt 0 12pt 0;
+            page-break-after: avoid;
+        }
+
+        p {
+            margin-bottom: 12pt;
+            text-align: justify;
+            font-size: 12pt; /* Explicitly set paragraph font size */
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 12pt 0 12pt 20pt;
+        }
+
+        li {
+            margin-bottom: 6pt;
+            font-size: 12pt; /* Explicitly set list item font size */
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18pt 0;
+        }
+
+        thead {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        th, td {
+            padding: 10pt; /* Increased from 8pt */
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 12pt; /* Explicitly set table cell font size */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 18pt 0;
+        }
+
+        .kpi-card {
+            width: 48%;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 12pt;
+            margin-bottom: 12pt;
+            box-shadow: 0 2pt 4pt rgba(0,0,0,0.1);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 18pt 0;
+        }
+
+        .team-member {
+            width: 48%;
+            margin-bottom: 18pt;
+            padding: 12pt;
+            background: #f8f9fa;
+            border-radius: 5pt;
+            box-shadow: 0 2pt 4pt rgba(0,0,0,0.1);
+        }
+
+        .team-role {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 6pt;
+            font-size: 13pt; /* Explicitly set team role font size */
+        }
+
+        /* Client Logos */
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            margin: 18pt 0;
+        }
+
+        .client-logos img {
+            height: 45pt; /* Increased from 40pt */
+            margin: 0 12pt 12pt 0;
+        }
+
+        /* Project Timeline */
+        .timeline {
+            margin: 18pt 0;
+        }
+
+        .timeline-item {
+            padding-left: 24pt;
+            border-left: 2px solid #3498db;
+            margin-bottom: 12pt;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 14pt; /* Increased from 12pt */
+            height: 14pt; /* Increased from 12pt */
+            background-color: #3498db;
+            border-radius: 50%;
+            position: absolute;
+            left: -7pt;
+            top: 5pt;
+        }
+
+        .timeline-phase {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 13pt; /* Explicitly set timeline phase font size */
+        }
+
+        .timeline-date {
+            color: #3498db;
+            font-style: italic;
+            font-size: 12pt; /* Explicitly set timeline date font size */
+        }
+
+        /* Case Study Section */
+        .case-study {
+            background-color: #f8f9fa;
+            padding: 18pt;
+            border-radius: 5pt;
+            margin: 18pt 0;
+            border-left: 4px solid #e74c3c;
+        }
+
+        /* Pricing Table */
+        .price-table {
+            width: 100%;
+        }
+
+        .price-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .price-table tr:last-child {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        /* Approval Section */
+        .approval {
+            page-break-before: always;
+            margin-top: 2cm;
+        }
+
+        .approval h2 {
+            margin-bottom: 1cm;
+        }
+
+        .approval p {
+            margin-bottom: 1.2cm;
+        }
+
+
+
+        /* Footer */
+        .footer {
+            margin-top: 1cm; /* Increased from 2cm */
+            padding-top: 12pt;
+            text-align: center;
+            font-size: 10pt; /* Increased from 9pt */
+            color: #666;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            h3 {
+                page-break-after: avoid;
+            }
+
+            table {
+                page-break-inside: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Cover and Summary together on first page -->
+    <div class="first-page">
+      <header>
+        <img src="assets/drc_logo.svg" alt="DRC Systems India Limited." height="80px">
+        <h1>{{ project_title }}</h1>
+        <p><strong>Proposal for:</strong> {{ client_name }}<br>
+           <strong>Date:</strong> {{ proposal_date }}</p>
+      </header>
+
+      <!-- Summary on same page as header -->
+      <div class="section summary-section">
+        <h2>Executive Summary</h2>
+        <p>{{ executive_summary }}</p>
+      </div>
+    </div>
+
+    <!-- Project Objectives -->
+    <div class="section">
+      <h2>Project Objectives</h2>
+      <ul>
+        {% for goal in project_goals %}
+          <li>{{ goal }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!--Key Performance Indicators -->
+    <div class="section">
+      <h2>Key Performance Indicators (KPIs)</h2>
+      <div class="kpi-grid">
+        {% for kpi in success_metrics %}
+          <div class="kpi-card">
+            <p>{{ kpi }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- About the Company -->
+    <div class="section about-company">
+      <h2>About {{ company_name }}</h2>
+      <p>{{ about_company }}</p>
+      {% if client_logos %}
+        <h3>Our Clients</h3>
+        <div class="client-logos">
+          {% for logo in client_logos %}
+            <img src="{{ logo }}" alt="Client Logo">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="section">
+      <h2>Why You Should Hire Us</h2>
+      <ul>
+        {% for reason in why_us %}
+          <li>{{ reason }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Proposed Solution -->
+    <div class="section">
+      <h2>Proposed Solution</h2>
+      <p>{{ proposed_solution }}</p>
+    </div>
+
+    <!-- Assumptions and Dependencies -->
+    <div class="section">
+      <h2>Assumptions and Dependencies</h2>
+      <ul>
+        {% for assumption in assumptions %}
+          <li>{{ assumption }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Task Breakdown -->
+    <div class="section">
+      <h2>Task Breakdown</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 70%;">Task / Sub-Task</th>
+            <th style="width: 30%;">Estimated Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in task_breakdown %}
+            <tr>
+              <td colspan="2" style="background-color: #e8f4fc; font-weight: bold;">{{ task.name }}</td>
+            </tr>
+            {% for sub in task.subtasks %}
+            <tr>
+              <td style="padding-left: 20px;">{{ sub.name }}</td>
+              <td>{{ sub.hours }}</td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Team Members Involved -->
+    <div class="section">
+      <h2>Team Members Involved</h2>
+      <div class="team-grid">
+        {% for member in team_members %}
+        <div class="team-member">
+          <h3>{{ member.name }}</h3>
+          <div class="team-role">{{ member.role }}</div>
+          <p>{{ member.bio }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="section">
+      <h2>Technology Stack</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%;">Category</th>
+            <th>Technologies</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category, techs in technology_stack.items() %}
+          <tr>
+            <td>{{ category }}</td>
+            <td>{{ ", ".join(techs) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Post Deployment-->
+    <div class="section">
+      <h2>Post-Deployment Support</h2>
+      <p>{{ support_details }}</p>
+    </div>
+
+    <!-- Project Timeline -->
+    <div class="section">
+      <h2>Primary Project Schedule</h2>
+      <div class="timeline">
+        {% for phase in project_schedule %}
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-phase">{{ phase.name }}: {{ phase.description }}</div>
+          <div class="timeline-date">{{ phase.start_date }} - {{ phase.end_date }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="section">
+      <h2>Pricing</h2>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pricing %}
+          <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.cost }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{{ total_cost }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Case Study and Highlight -->
+    <div class="section">
+      <h2>Case Study Highlight</h2>
+      <div class="case-study">
+        <h3>{{ case_study.client }}</h3>
+        <p><strong>Challenge:</strong> {{ case_study.challenge }}</p>
+        <p><strong>Solution:</strong> {{ case_study.solution }}</p>
+        <p><strong>Results:</strong> {{ case_study.results }}</p>
+      </div>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="section">
+      <h2>Terms and Conditions</h2>
+      <ol>
+        <li>All information in this proposal is confidential and intended solely for {{ client_name }}.</li>
+        <li>The estimated costs mentioned are exclusive of taxes, unless otherwise specified.</li>
+        <li>Any changes in project scope may result in additional charges and timeline adjustments.</li>
+        <li>DRC Systems retains the right to use the completed project as part of its portfolio unless explicitly restricted.</li>
+        <li>Payment terms will be outlined in the formal contract agreement following proposal approval.</li>
+        <li>Intellectual property rights for all deliverables will be transferred upon full payment.</li>
+        <li>This proposal is valid for a period of 30 days from the date of issuance. After this period, terms including pricing and timelines may be subject to revision.</li>
+      </ol>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="section">
+      <h2>Next Steps</h2>
+      <ol>
+        {% for step in next_steps %}
+          <li>{{ step }}</li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <!-- Approval -->
+    <div class="section approval">
+        <h2>Approval</h2>
+        <p>We look forward to collaborating on this project. Please confirm approval by signing below.</p>
+        <p>Client Name: ________________________</p>
+        <p>Signature: ____________________________</p>
+        <p>Date: ________________________________</p>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+      &copy; {{ current_year }} {{ company_name }}. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

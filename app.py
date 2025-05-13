@@ -1,13 +1,17 @@
+import time
+
 import streamlit as st
 import os
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 import langchain_helper as helper
 from langchain_core.output_parsers import PydanticOutputParser,JsonOutputParser
+import json
+
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template("proposal_template_2.html")
+template = env.get_template("proposal_template_4.html")
 
 # Streamlit UI
 st.title("📄 Proposal Creator AI")
@@ -42,6 +46,7 @@ try:
         company_details = helper.extract_company_details(company_details_path)
 
         company_proposal = helper.create_proposal(client_req,company_quatation,company_details)
+        print("Waiting To Fetch Response")
 
         # #Filtering the text
         #
@@ -56,13 +61,14 @@ try:
 
         #Converting data into JSON
 
+
         json_parser = JsonOutputParser()
-        company_proposal = json_parser.parse(company_proposal)
-            # json_parser = PydanticOutputParser(pydantic_object=Proposal)
-            #
-            # company_proposal = json_parser.parse(company_proposal)
-        if company_proposal:
-            company_proposal["client_logos"] = [
+        json_company_proposal = json_parser.parse(company_proposal)
+        print("JSON COMPANY PROPOSAL :",json_company_proposal)
+        time.sleep(2)
+        if json_company_proposal:
+            print("Got Response")
+            json_company_proposal["client_logos"] = [
                     "https://www.drcsystems.com/wp-content/uploads/2023/06/iimb-logo.png",
                     "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-3.png",
                     "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-4.png",
@@ -71,7 +77,7 @@ try:
                     "https://www.drcsystems.com/wp-content/uploads/2023/09/logo-6.png",
                 ]
 
-            proposal_html = template.render(company_proposal)
+            proposal_html = template.render(json_company_proposal)
 
             # Display in Streamlit
             st.subheader("📜 Proposal Preview")
