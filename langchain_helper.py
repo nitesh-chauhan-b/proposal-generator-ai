@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.prompts import PromptTemplate
+from langchain_core.output_parsers import JsonOutputParser
 import untils
 from datetime import date
 import re
@@ -17,7 +18,18 @@ load_dotenv()
 # llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
 
 # #Changing llm model
-llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",temperature=0.7)
+llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+               temperature=0.7,
+               #Adding parameter to force model to output JSON Response Every Time
+               model_kwargs={
+                   "response_format": {"type": "json_object"}
+               }
+               )
+
+# Using llm without the json format
+llm2 = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+               temperature=0.7)
+
 # llm = ChatGroq(model="llama-3.3-70b-versatile",temperature=0.6)
 
 
@@ -26,6 +38,10 @@ llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",temperature=0.7
 
 #Testing
 # print(llm.invoke("hello"))
+
+
+#Creating a JSON Parser
+parser = JsonOutputParser()
 
 #Extracting Client Requirements
 def extract_client_requirements(file_path):
@@ -67,11 +83,12 @@ def extract_client_requirements(file_path):
     )
 
     #Creating a simple chain
-    extraction_chain = extraction_prompt | llm
+    extraction_chain = extraction_prompt | llm2
 
     response = extraction_chain.invoke(input={"document_text":filtered_client_requirements})
 
-    return response.content
+    # return response.content
+    return response
 
 def extract_company_quatation_details(client_requirements):
 
@@ -156,7 +173,7 @@ def extract_company_quatation_details(client_requirements):
     )
 
     #Creating simple chain
-    quatation_chain = quatation_extraction | llm
+    quatation_chain = quatation_extraction | llm2
 
     quatation_response = quatation_chain.invoke(input={"client_requirements":client_requirements})
 
@@ -207,7 +224,7 @@ def extract_company_details(file_path):
         )
 
         # Simple chain
-        details_extraction_chian = company_details_prompt | llm
+        details_extraction_chian = company_details_prompt | llm2
 
         # Getting response
         company_details = details_extraction_chian.invoke(input={"company_details": fileter_company_details})
@@ -372,6 +389,9 @@ def create_proposal(client_requirements,company_quatation,company_details):
         template=proposal_template
     )
 
+    # #Adding output parser in response itself
+    # parser = JsonOutputParser()
+
     #Chain
     proposal_chain = proposal_prompt | llm
 
@@ -379,17 +399,18 @@ def create_proposal(client_requirements,company_quatation,company_details):
     response = proposal_chain.invoke(input={"client_requirements": client_requirements, "quatation_details": company_quatation,"company_details":company_details,"today_date":today_date})
 
 
-
-    #Filtering company proposal for JSON parsing
+    # #Filtering company proposal for JSON parsing
     pattern = re.compile(r'\{[\s\S]*\}', re.DOTALL)
     match = pattern.search(response.content)
 
     company_proposal = match.group(0)
 
+
     # Printing the proposal
     print("\n\n Filtered JSON Response : \n\n", company_proposal)
 
     return company_proposal
+
 
 
 if __name__ == "__main__":
