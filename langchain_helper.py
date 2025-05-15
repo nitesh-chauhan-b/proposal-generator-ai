@@ -18,23 +18,30 @@ load_dotenv()
 # llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
 
 # #Changing llm model
-llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
-               temperature=0.7,
-               #Adding parameter to force model to output JSON Response Every Time
-               model_kwargs={
-                   "response_format": {"type": "json_object"}
-               }
-               )
+# llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+#                temperature=0.7,
+#                #Adding parameter to force model to output JSON Response Every Time
+#                model_kwargs={
+#                    "response_format": {"type": "json_object"}
+#                }
+#                )
 
-# Using llm without the json format
-llm2 = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
-               temperature=0.7)
+# # Using llm without the json format
+# llm2 = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+#                temperature=0.7)
 
 # llm = ChatGroq(model="llama-3.3-70b-versatile",temperature=0.6)
 
 
 #Using google LLM
-# llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash')
+llm = ChatGoogleGenerativeAI(model='gemini-2.5-flash-preview-04-17',
+                             temperature=0.7,
+                             model_kwargs={
+                   "response_format": {"type": "json_object"}
+               })
+
+
+llm2 = ChatGoogleGenerativeAI(model="gemini-2.5-flash-preview-04-17",temperature=0.7)
 
 #Testing
 # print(llm.invoke("hello"))
@@ -201,21 +208,71 @@ def extract_company_details(file_path):
         fileter_company_details = untils.clean_text(company_details_text)
 
         detail_prompt = """
-        You Are an Helpful AI Assistant which helps the user to extract the details of the company in consise manner from the given text. Make it as detailed and useful as possible.
-    
-        #Details
+        You are a highly skilled AI assistant specializing in business intelligence extraction. Your task is to thoroughly analyze the provided company information and extract all meaningful, proposal-relevant data. This extracted data will be used to automatically generate a compelling software solution proposal that builds trust, demonstrates the company’s value, and increases client conversion rates.
+
+        # Input Text
         {company_details}
-    
-        #Instruction
-        1. Analyis the whole document in depth.
-        2. Convert the fileds which could be useful keeping in ming that this information will be used for creating a proposal from company.
-        3. The details about company should include Extensive_summary, about company, thier_clients, why_should_you_hire_us?, technological_exprerince, industry_exprerince, notable_projects, customer_staticfacation.
-        4. This all details MUST be in a JSON format. for example {{extensive_summaer:"summary"}} 
-        5. For some important sections make them into detail
-    
-        ##Extract all the important details and convet them into JSON Only.
-        #Retun the JSON output only. Nothing Else.
-    
+
+        # Objective
+        Transform the above company content into a rich, well-structured, and comprehensive JSON profile that represents the company’s full strengths and capabilities. This profile must serve as a foundation for generating high-quality proposals—highlighting the company’s credibility, technical strength, industry experience, and client outcomes.
+
+        # Instructions
+        1. Analyze the full input deeply—sentence by sentence—to understand the company's essence, expertise, experience, and credibility.
+        2. Extract and synthesize all **relevant and useful** information. Be informative, concise, and structured.
+        3. Generate the output strictly in the JSON format below. **Every field must be populated if information is available**.
+
+        # Output JSON Format (Structure to Follow)
+        ```json
+        {{
+          "extensive_summary": "A compelling, high-level summary of the company. Minimum 10 lines. Highlight history, philosophy, value proposition, achievements, trust signals, and impact.",
+          "about_company": "More factual and structured background of the company: founding year, size, leadership, mission, and areas of specialization.",
+          "their_clients": [
+            "List notable clients, industries served, or market segments. Prefer real client names, but anonymized descriptions are okay."
+          ],
+          "why_should_you_hire_us": [
+            "Unique selling proposition 1 (e.g., 100% on-time delivery record)",
+            "USP 2 (e.g., proprietary frameworks for faster development)",
+            "USP 3",
+            "USP 4",
+            "USP 5"
+          ],
+          "technological_experience": {{
+            "Web Development": ["React", "Node.js", "Django"],
+            "Mobile": ["Flutter", "React Native"],
+            "Cloud & DevOps": ["AWS", "Docker", "Kubernetes"],
+            "AI/ML": ["TensorFlow", "LangChain"],
+            "Others": ["CRM Integrations", "IoT", etc.]
+          }},
+          "industry_experience": [
+            "E-commerce: built scalable marketplaces for global clients",
+            "Healthcare: HIPAA-compliant patient portals",
+            "Fintech: payment gateway integrations and fraud detection"
+          ],
+          "notable_projects": [
+            {{
+              "title": "Project Name",
+              "client_type": "Industry or sector",
+              "technologies_used": ["Tech1", "Tech2", "Tech3"],
+              "summary": "5–7 line overview of the project: what problem it solved, key features, and user impact.",
+              "outcomes": "Measured or qualitative outcomes (e.g., 40% faster onboarding, 99.9% uptime, increased sales)."
+            }}
+          ],
+          "customer_satisfaction": "Summarize client feedback, Net Promoter Score, testimonials, retention rates, or success metrics that show trust.",
+          "global_presence": "Mention countries, regions, or markets served if relevant.",
+          "certifications": [
+            "ISO 27001",
+            "AWS Partner",
+            "SOC 2 Compliant"
+          ],
+          "team_strength": "Overview of team size, skillsets, organizational structure (e.g., 100+ engineers, dedicated R&D division).",
+          "delivery_model": "Describe whether the company uses Agile, Dedicated Teams, Time-and-Material, or Fixed Price. Mention offshore/onshore options if applicable.",
+          "core_values": [
+            "Customer-centric innovation",
+            "Data-driven decision making",
+            "Integrity and transparency",
+            "Agility and adaptability"
+          ]
+        }}
         """
 
         company_details_prompt = PromptTemplate(
@@ -238,148 +295,152 @@ def create_proposal(client_requirements,company_quatation,company_details):
     # Another prompt
     proposal_template = """
 
-        You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+    You are a highly intelligent and detail-oriented AI Assistant that generates comprehensive and professional software solution proposals based on provided client requirements and company quotation.
 
-        ## Instructions
-        1. Analyze the given information in depth.
-        2. Create an innovative proposal for the client to provide a suitable software solution.
-        3. Extract the required information and convert it into the exact JSON format specified below.
-        4. In solution_phases generate the phases of solution based on the given information
-        5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
-        6. For Task Breakdown section analyse the project schedule, team_members, technology_stack and then based on this details generate the task breakdown of the project in terms of the technology used and also make sure to calculate the estimated hours based on the project schedule and you can generate the as many realist tasks as possible. 
+    ## Primary Goal
+    Generate a highly detailed and persuasive software solution proposal in the exact JSON format specified below. Ensure the output is exhaustive, well-articulated, and each section is crafted to maximize clarity, marketing impact, technical precision, and strategic value.
 
-        ## Client Requirements
-        {client_requirements}
+    ## Detailed Instructions
+    1. Carefully analyze the given client requirements and company quotation.
+    2. Create an extensive, compelling proposal that addresses the client’s needs, highlights business value, and aligns with the company's strengths.
+    3. Every field in the JSON should be filled with **maximum detail and clarity**.
+    4. **Each textual field must be written with professional tone, persuasive language, and no placeholders. Avoid repetition.**
+    5. In `executive_summary`, write **10–12 lines**, focusing on strategic vision, innovation, and business benefits.
+    6. In `project_goals`, derive at least **5 specific and actionable objectives** from the client needs and project theme.
+    7. In `success_metrics`, define at least **5 strong KPIs** that can be tracked and measured.
+    8. In `about_company`, provide an in-depth **12-line overview** of the company’s experience, technologies, client success stories, and key differentiators.
+    9. In `problem_statement`, reframe the client’s challenge as a major opportunity to create strategic advantage and value.
+    10. In `proposed_solution`, craft a **10–12 line** in-depth explanation that blends creativity, innovation, technical solutioning, and ROI.
+    11. In `assumptions`, list at least **5 well-thought-out and realistic assumptions** needed to ensure project success.
+    12. In `solution_phases`, generate at least **4 to 6 clearly defined phases** of execution, each with a specific focus.
+    13. In `project_schedule`, provide at least **4 detailed phases** with accurate timelines based on quotation.
+    14. In `team_members`, list **4 unique members** (with Indian names), each having a realistic role and a 2–3 line bio explaining their domain expertise.
+    15. In `technology_stack`, categorize stack into **appropriate domains** (e.g., Backend, Frontend, DevOps, AI/ML, etc.) with detailed tools and short reasoning for their choice.
+    16. In `task_breakdown`, ensure:
+        - Minimum of **5 main tasks** with 3–5 subtasks each.
+        - Subtasks must be **technology-specific**, logically derived from the project goals and stack.
+        - Provide **realistic and consistent estimated hours** based on project schedule and team size.
+    17. In `why_us`, craft at least **3 detailed reasons** showing competitive advantage, specialization, and past results.
+    18. In `case_study`, write:
+        - A specific or anonymized client/industry example.
+        - A **detailed 7–8 line** challenge.
+        - An **8–10 line solution** describing tools, architecture, approach.
+        - A **6–8 line results** section quantifying improvements, efficiencies, and business impact.
+    19. In `next_steps`, list **5 chronological steps** that are clear and actionable.
+    20. In `support_details`, write **a full paragraph** (6–8 lines) describing the scope of post-deployment support including tools, SLA, updates, issue resolution, and communication.
+    21. In `pricing`, add at least **3–4 clearly itemized components** with descriptions and costs.
+    22. In `total_cost`, **accurately sum all pricing components**.
+    23. The year should be set to 2025.
 
-        ## Company Quotation
-        {quatation_details}
+    ## Client Requirements
+    {client_requirements}
 
-        # Company Details
-        {company_details}
+    ## Company Quotation
+    {quatation_details}
 
-        ## Required JSON Format
+    # Company Details
+    {company_details}
 
-        {{
-            "company_name": "Company Name",
-            "company_email": "contact@yourcompany.com",
-            "client_name": "Client Name",
-            "project_title": "Title of the project",
-            "proposal_date":"{today_date}",
-            "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
-              "project_goals": [
-                "State Objective 1 based on client’s needs and project summary",
-                "State Objective 2",
-                "State Objective 3"
-                "State Objective 4"
-                "State Objective 5"
-              ],
-              "success_metrics": [
-                "KPI 1 (e.g., project delivered within deadline)",
-                "KPI 2 (e.g., 99% uptime after deployment)",
-                "KPI 3 (e.g., reduced manual effort by 40%)",
-                "KPI 4 (e.g., reduced manual effort by 40%)",
-              ],
-            "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail in 10 lines",
+    ## Required JSON Format
 
-            "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
-            "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value. Make it at least about 8-10 lines",
-              "assumptions": [
-                "Assumption 1 (e.g., client will provide API access within 5 days)",
-                "Assumption 2 (e.g., timelines are dependent on prompt feedback)",
-                "Assumption 3 (e.g., third-party tools will be available and stable)",
-                "Assumption 4",
-                "Assumption 5"
-              ],
-            "solution_phases": [
-                "proposed solution phase 1",
-                "proposed solution phase 2",
-                "proposed solution phase 3",
-                "proposed solution phase 4",
-            ],
-            "project_schedule": [
-                {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
-                {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
-                {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
-                {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
-            ],
-
-            "team_members": [
-                {{"name": "Random Indian Person Name", "role": "Role in project",
-                "bio" :"Generate bio about team member in short respective to their domain"
-                }},
-                {{"name": "Random Indian Person Name", "role": "Role in project",
-                "bio" :"Generate bio about team member in short respective to their domain"
-                }},
-            ],
-            "technology_stack": {{
-                {{"Domain Name 1" : [Technology used for this domain ]}},
-                {{"Domain Name 1" : [Technology used for this domain ]}},
-                {{"Domain Name 1" : [Technology used for this domain ]}},
-
-            }},
-            
+    {{ 
+        "company_name": "Company Name",
+        "company_email": "contact@yourcompany.com",
+        "client_name": "Client Name",
+        "project_title": "Title of the project",
+        "proposal_date":"{today_date}",
+        "executive_summary": "Highly detailed 10–12 line executive summary",
+        "project_goals": [
+            "Objective 1",
+            "Objective 2",
+            "Objective 3",
+            "Objective 4",
+            "Objective 5"
+        ],
+        "success_metrics": [
+            "KPI 1",
+            "KPI 2",
+            "KPI 3",
+            "KPI 4",
+            "KPI 5"
+        ],
+        "about_company": "Comprehensive 12-line company overview highlighting domain expertise, client successes, and innovation culture",
+        "problem_statement": "Clearly framed challenge with opportunity perspective",
+        "proposed_solution": "Detailed 10–12 line solution highlighting features, technical strategy, impact, and value",
+        "assumptions": [
+            "Assumption 1",
+            "Assumption 2",
+            "Assumption 3",
+            "Assumption 4",
+            "Assumption 5"
+        ],
+        "solution_phases": [
+            "Phase 1: ...",
+            "Phase 2: ...",
+            "Phase 3: ...",
+            "Phase 4: ...",
+            "Phase 5: ..."
+        ],
+        "project_schedule": [
+            {{ "name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End" }},
+            {{ "name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End" }},
+            {{ "name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End" }},
+            {{ "name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End" }}
+        ],
+        "team_members": [
+            {{ "name": "Name 1", "role": "Role", "bio": "2–3 line domain-specific bio" }},
+            {{ "name": "Name 2", "role": "Role", "bio": "2–3 line domain-specific bio" }},
+            {{ "name": "Name 3", "role": "Role", "bio": "2–3 line domain-specific bio" }},
+            {{ "name": "Name 4", "role": "Role", "bio": "2–3 line domain-specific bio" }}
+        ],
+        "technology_stack": {{
+            "Frontend": ["React.js", "Tailwind CSS"],
+            "Backend": ["Node.js", "Express.js"],
+            "Database": ["MongoDB"],
+            "DevOps": ["Docker", "GitHub Actions"],
+            "AI/ML": ["LangChain", "OpenAI API"]
+        }},
         "task_breakdown": [
             {{
-            "name": "Name Of the task 1",
-            "subtasks": [
-                {{ "name": "Sub task 1 ", "hours": estimated hours }},
-                {{ "name": "Sub task 2 ", "hours": estimated hours }},
-                {{ "name": "Sub task 3 ", "hours": estimated hours }},
-            ]
+                "name": "Task 1",
+                "subtasks": [
+                    {{ "name": "Subtask 1", "hours": 10 }},
+                    {{ "name": "Subtask 2", "hours": 12 }},
+                    {{ "name": "Subtask 3", "hours": 8 }}
+                ]
             }},
-            {{
-            "name": "Name Of the task 1",
-            "subtasks": [
-                {{ "name": "Sub task 1 ", "hours": estimated hours }},
-                {{ "name": "Sub task 2 ", "hours": estimated hours }},
-                {{ "name": "Sub task 3 ", "hours": estimated hours }},
-            ]
-            }},
-            {{
-            "name": "Name Of the task 1",
-            "subtasks": [
-                {{ "name": "Sub task 1 ", "hours": estimated hours }},
-                {{ "name": "Sub task 2 ", "hours": estimated hours }},
-                {{ "name": "Sub task 3 ", "hours": estimated hours }},
-            ]
-            }},
-            "why_us": [
-                "Detailed Reason 1",
-                "Detailed Reason 2",
-                "Detailed Reason 3"
-            ],
-            "case_study": {{
-                "client": "Mention a past client or industry (can be anonymized)",
-                "challenge": "Summarize the client's challenge that was solved",
-                "solution": " In Detail Explain how your team solved it (tools, methods, etc.) at least 6 to 8 lines",
-                "results": "In detail Share the results or impact (e.g., increased efficiency, faster processing, better UX) in about 6-7 lines"
-              }},
-            "next_steps": [
-                "Proposal Approval",
-                "Contract Signing",
-                "Kickoff Meeting",
-                "Development Environment Setup",
-                "Project Execution Start"
-              ]
-            "support_details": "Describe the post-deployment support to be provided. Include bug fixes, monitoring, maintenance duration, and communication channels. Make it at leaset about 6 -8 lines",
-            "pricing": [
-                {{
-                    "description": "pricing description 1 ",
-                    "cost": "relevant price"
-                }},
-                {{
-                    "description": "pricing description 2",
-                    "cost": "relevant price"
-                }},
-                {{
-                    "description": "pricing description 3",
-                    "cost": "relevant price"
-                }},
-            ],
-            "total_cost": "Calculate the total cost according to the price",
-            "current_year": 2025
-        }}
-        """
+            ...
+        ],
+        "why_us": [
+            "Reason 1",
+            "Reason 2",
+            "Reason 3"
+        ],
+        "case_study": {{
+            "client": "Anonymized Client Name",
+            "challenge": "Detailed 7–8 line explanation of the challenge",
+            "solution": "Detailed 8–10 line explanation of the solution and technical execution",
+            "results": "6–8 line summary of outcomes, impact, and value delivered"
+        }},
+        "next_steps": [
+            "Proposal Approval",
+            "Contract Signing",
+            "Kickoff Meeting",
+            "Development Environment Setup",
+            "Project Execution Start"
+        ],
+        "support_details": "6–8 line paragraph on post-deployment support, monitoring, maintenance, and communication methods",
+        "pricing": [
+            {{ "description": "Item 1", "cost": "Amount" }},
+            {{ "description": "Item 2", "cost": "Amount" }},
+            {{ "description": "Item 3", "cost": "Amount" }},
+            {{ "description": "Item 4", "cost": "Amount" }}
+        ],
+        "total_cost": "Total of all line items",
+        "current_year": 2025
+    }}
+
+    """
 
     #Getting current data
     today_date = date.today()
@@ -407,7 +468,8 @@ def create_proposal(client_requirements,company_quatation,company_details):
 
 
     # Printing the proposal
-    print("\n\n Filtered JSON Response : \n\n", company_proposal)
+    print("Length of Response : ",len(company_proposal))
+    # print("\n\n Filtered JSON Response : \n\n", company_proposal)
 
     return company_proposal
 

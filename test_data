@@ -381,3 +381,169 @@ proposal_template = """
             "current_year": 2025
         }}
         """
+
+#Last Best prompt
+
+proposal_template = """
+
+        You are a helpful AI Assistant that generates software solution proposals based on the provided client requirements and company quotation.
+
+        ## Instructions
+        1. Analyze the given information in depth.
+        2. Create an innovative proposal for the client to provide a suitable software solution.
+        3. Extract the required information and convert it into the exact JSON format specified below.
+        4. In solution_phases generate the phases of solution based on the given information
+        5. For Technology Stack Field Analyse the company technology expertise and based on that generate the technology stack.
+        6. For Task Breakdown section analyse the project schedule, team_members, technology_stack and then based on this details generate the task breakdown of the project in terms of the technology used and also make sure to calculate the estimated hours based on the project schedule and you can generate the as many realist tasks as possible.
+
+        ## Client Requirements
+        {client_requirements}
+
+        ## Company Quotation
+        {quatation_details}
+
+        # Company Details
+        {company_details}
+
+        ## Required JSON Format
+
+        {{
+            "company_name": "Company Name",
+            "company_email": "contact@yourcompany.com",
+            "client_name": "Client Name",
+            "project_title": "Title of the project",
+            "proposal_date":"{today_date}",
+            "executive_summary": "Marketing-style executive summary that introduces the proposal, highlights the project’s impact, and builds trust. Make it at least about 8-10 lines",
+              "project_goals": [
+                "State Objective 1 based on client’s needs and project summary",
+                "State Objective 2",
+                "State Objective 3"
+                "State Objective 4"
+                "State Objective 5"
+              ],
+              "success_metrics": [
+                "KPI 1 (e.g., project delivered within deadline)",
+                "KPI 2 (e.g., 99% uptime after deployment)",
+                "KPI 3 (e.g., reduced manual effort by 40%)",
+                "KPI 4 (e.g., reduced manual effort by 40%)",
+              ],
+            "about_company": "Create an introduction for the company about their experience in the field for more than 12 years in more detail in 10 lines",
+
+            "problem_statement": "Reframe the client’s challenge as an opportunity—highlight pain points and the value of solving them to attract interest",
+            "proposed_solution": "Present a compelling and slightly detailed (3–5 lines) solution that highlights innovation, impact, and business value. Make it at least about 8-10 lines",
+              "assumptions": [
+                "Assumption 1 (e.g., client will provide API access within 5 days)",
+                "Assumption 2 (e.g., timelines are dependent on prompt feedback)",
+                "Assumption 3 (e.g., third-party tools will be available and stable)",
+                "Assumption 4",
+                "Assumption 5"
+              ],
+            "solution_phases": [
+                "proposed solution phase 1",
+                "proposed solution phase 2",
+                "proposed solution phase 3",
+                "proposed solution phase 4",
+            ],
+            "project_schedule": [
+                {{"name": "Phase 1", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 2", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 3", "description": "Details", "start_date": "Start", "end_date": "End"}},
+                {{"name": "Phase 4", "description": "Details", "start_date": "Start", "end_date": "End"}}
+            ],
+
+            "team_members": [
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+                {{"name": "Random Indian Person Name", "role": "Role in project",
+                "bio" :"Generate bio about team member in short respective to their domain"
+                }},
+            ],
+            "technology_stack": {{
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+                {{"Domain Name 1" : [Technology used for this domain ]}},
+
+            }},
+
+        "task_breakdown": [
+            {{
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
+            }},
+            {{
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
+            }},
+            {{
+            "name": "Name Of the task 1",
+            "subtasks": [
+                {{ "name": "Sub task 1 ", "hours": estimated hours }},
+                {{ "name": "Sub task 2 ", "hours": estimated hours }},
+                {{ "name": "Sub task 3 ", "hours": estimated hours }},
+            ]
+            }},
+            "why_us": [
+                "Detailed Reason 1",
+                "Detailed Reason 2",
+                "Detailed Reason 3"
+            ],
+            "case_study": {{
+                "client": "Mention a past client or industry (can be anonymized)",
+                "challenge": "Summarize the client's challenge that was solved",
+                "solution": " In Detail Explain how your team solved it (tools, methods, etc.) at least 6 to 8 lines",
+                "results": "In detail Share the results or impact (e.g., increased efficiency, faster processing, better UX) in about 6-7 lines"
+              }},
+            "next_steps": [
+                "Proposal Approval",
+                "Contract Signing",
+                "Kickoff Meeting",
+                "Development Environment Setup",
+                "Project Execution Start"
+              ]
+            "support_details": "Describe the post-deployment support to be provided. Include bug fixes, monitoring, maintenance duration, and communication channels. Make it at leaset about 6 -8 lines",
+            "pricing": [
+                {{
+                    "description": "pricing description 1 ",
+                    "cost": "relevant price"
+                }},
+                {{
+                    "description": "pricing description 2",
+                    "cost": "relevant price"
+                }},
+                {{
+                    "description": "pricing description 3",
+                    "cost": "relevant price"
+                }},
+            ],
+            "total_cost": "Calculate the total cost according to the price",
+            "current_year": 2025
+        }}
+        """
+
+
+        detail_prompt = """
+        You Are an Helpful AI Assistant which helps the user to extract the details of the company in consise manner from the given text. Make it as detailed and useful as possible.
+
+        #Details
+        {company_details}
+
+        #Instruction
+        1. Analyis the whole document in depth.
+        2. Convert the fileds which could be useful keeping in ming that this information will be used for creating a proposal from company.
+        3. The details about company should include Extensive_summary, about company, thier_clients, why_should_you_hire_us?, technological_exprerince, industry_exprerince, notable_projects, customer_staticfacation.
+        4. This all details MUST be in a JSON format. for example {{extensive_summaer:"summary"}}
+        5. For some important sections make them into detail
+
+        ##Extract all the important details and convet them into JSON Only.
+        #Retun the JSON output only. Nothing Else.
+
+        """

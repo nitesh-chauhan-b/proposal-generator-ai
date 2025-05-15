@@ -64,7 +64,7 @@ try:
 
         json_parser = JsonOutputParser()
         json_company_proposal = json_parser.parse(company_proposal)
-        print("JSON COMPANY PROPOSAL :",json_company_proposal)
+        print("FILTERED JSON COMPANY DATA \n\n :",json_company_proposal)
         # time.sleep(2)
         if json_company_proposal:
             print("Got Response")
