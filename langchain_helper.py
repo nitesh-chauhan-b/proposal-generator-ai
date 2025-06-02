@@ -1,15 +1,22 @@
+import json
 import os.path
 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.output_parsers import JsonOutputParser,PydanticOutputParser
 import untils
 from datetime import date
 import re
 from langchain_google_genai import ChatGoogleGenerativeAI
+from json_repair import repair_json
+import proposal_format
+from proposal_format import ProposalData
+
+
 load_dotenv()
+
 
 #Setting LLM model
 # llm = ChatGroq(model="llama3-70b-8192",temperature=0.6)
@@ -35,7 +42,7 @@ load_dotenv()
 
 #Using google LLM
 llm = ChatGoogleGenerativeAI(model='gemini-2.5-flash-preview-04-17',
-                             temperature=0.7,
+                             temperature=0.6,
                              model_kwargs={
                    "response_format": {"type": "json_object"}
                })
@@ -340,7 +347,7 @@ def create_proposal(client_requirements,company_quatation,company_details):
 
     # Company Details
     {company_details}
-
+       
     ## Required JSON Format
 
     {{ 
@@ -445,8 +452,13 @@ def create_proposal(client_requirements,company_quatation,company_details):
     #Getting current data
     today_date = date.today()
 
+    # # Creating a parser
+    # py_parser = PydanticOutputParser(pydantic_object=ProposalData)
+
+
     proposal_prompt = PromptTemplate(
         input_variables=["client_requirements", "quatation_details","company_details","today_date"],
+        # partial_variables={"format_instructions":py_parser.get_format_instructions()},
         template=proposal_template
     )
 
@@ -466,6 +478,19 @@ def create_proposal(client_requirements,company_quatation,company_details):
 
     company_proposal = match.group(0)
 
+    # Replacing the ** with the bold using the regular expression
+    company_proposal = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', company_proposal)
+
+    # Repairing it in adance to remove tralling commas, not closing quotes etc.
+
+    try:
+        parser.parse(company_proposal)
+    except:
+        # IF there is an error in parsing then applying the repair_json
+        try:
+            company_proposal = repair_json(company_proposal)
+        except e:
+            print("JSON Repair Error : ",e)
 
     # Printing the proposal
     print("Length of Response : ",len(company_proposal))

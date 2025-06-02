@@ -1,3 +1,4 @@
+# adding functionality for user to add document about the company and then generate the proposal
 import time
 
 import streamlit as st
@@ -7,8 +8,7 @@ from weasyprint import HTML
 import langchain_helper as helper
 from langchain_core.output_parsers import PydanticOutputParser,JsonOutputParser
 import json
-# import proposal_format
-# from proposal_format import ProposalData
+
 
 # Loading Jinja2 template
 env = Environment(loader=FileSystemLoader('.'))
@@ -16,11 +16,17 @@ template = env.get_template("proposal_template_4.html")
 
 # Streamlit UI
 st.title("📄 Proposal Creator AI")
-st.write("**Upload a software requirements document to generate a proposal.**")
+
+st.write("**Upload a software requirements document and company details document(optional)**")
+
+company_doc = st.file_uploader("Upload Company Detail PDF",type=["pdf"],key="company_doc")
+
+# st.write("**Upload  to generate a proposal.**")
 
 # File upload
-uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
+uploaded_file = st.file_uploader("Upload SRS PDF", type=["pdf"])
 try:
+
     if uploaded_file:
         st.success("File uploaded successfully!")
 
@@ -28,14 +34,28 @@ try:
         client_file_path = "client_documents/client_requirements.pdf"
         with open(client_file_path,"wb") as file:
             file.write(uploaded_file.getbuffer())
-
+            print("Uploaded File is saved!")
         # print("File Details : ",uploaded_file)
         if os.path.exists("client_documents/client_requirements.pdf"):
             client_doc_path = "client_documents/client_requirements.pdf"
 
 
         company_quatation_path = "resources/company_quatation.pdf"
-        company_details_path = "resources/DRC_Systems_Details.pdf"
+
+        # If we have the company details uploaded by the user
+        if company_doc:
+            company_details_path = "resources/uploaded_company_details.pdf"
+
+            # Saving uploaded pdf
+            with open(company_details_path,"wb") as file:
+                file.write(company_doc.getbuffer())
+
+            # Getting company details pdf
+            if os.path.exists(company_details_path):
+                company_details_path = "resources/uploaded_company_details.pdf"
+
+        else:
+            company_details_path = "resources/DRC_Systems_Details.pdf"
 
         #Getting client Requirements
         client_req = helper.extract_client_requirements(client_doc_path)
@@ -52,10 +72,6 @@ try:
         #Converting data into JSON
         json_parser = JsonOutputParser()
         json_company_proposal = json_parser.parse(company_proposal)
-
-        # # Using pydantic output parser
-        # json_parser = PydanticOutputParser(pydantic_object=ProposalData)
-
         print("FILTERED JSON COMPANY DATA \n\n :",json_company_proposal)
         # time.sleep(2)
         if json_company_proposal:
@@ -84,10 +100,6 @@ try:
                 st.write("There is pdf rendering problem please try again.")
         else:
             st.write("Please try after sometime model limit is reached!")
-        # if st.button("Download as PDF"):
-        #     HTML(string=proposal_html).write_pdf("documents/proposal.pdf")
-        #     with open("documents/proposal.pdf", "rb") as file:
-        #         st.download_button("Download PDF", file, "proposal.pdf", "application/pdf")
 
 except Exception as e:
     st.write("Something Went Wrong \n\n",e)

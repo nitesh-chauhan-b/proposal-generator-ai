@@ -1,134 +1,127 @@
 ```json
 {
-  "extensive_summary": "DRC Systems India Limited, established in 2012, has rapidly grown into a prominent software development company with a strong reputation for delivering innovative technology solutions.\nStrategically headquartered in GIFT City, Gandhinagar, the company benefits from world-class infrastructure and a location fostering rapid growth.\nWith a dynamic approach and a team of over 300 highly skilled professionals, DRC Systems aims to be the most sought-after enterprise technology partner.\nTheir mission is centered on creating high-quality, scalable, and robust solutions that drive business transformation across diverse sectors.\nThey emphasize accessibility and efficiency, ensuring seamless adoption of next-generation digital solutions.\nDRC Systems offers an extensive range of services covering emerging technologies like AI/ML, Blockchain, Cloud, Data Analytics, and Mobile/Web development.\nTheir deep industry experience spans education, healthcare, finance, public sector, retail, and transportation.\nClient satisfaction is paramount, highlighted by responsive communication, timely delivery, proactive support, and significant positive impact on business outcomes like efficiency and growth.\nBacked by prestigious certifications (CMMI L3, ISO 9001, ISO 27001) and strategic partnerships with tech giants like Microsoft and Google Cloud, DRC Systems builds trust and ensures quality.\nTheir people-first culture invests in employee development and fosters an inclusive, innovative environment.\nPoised for future growth, they continue investing in emerging technologies and planning global expansion, solidifying their position as a trusted partner for digital transformation.",
-  "about_company": "DRC Systems India Limited is a software development company founded in 2012. Headquartered in GIFT City, Gandhinagar, the company has grown to a team of over 300 highly skilled professionals. Its mission is to be the most sought-after enterprise technology partner by creating high-quality, scalable, and robust technology solutions that drive business transformation across various sectors. They focus on making digital solutions accessible and efficient for businesses, emphasizing customer satisfaction, long-term partnerships, and innovative thinking. Their core areas of specialization include Learning Management Systems, Blockchain, AI/ML, Data Analytics, Automation, Cloud Solutions, and Mobile/Web Development.",
+  "extensive_summary": "DRC Systems India Limited, established in 2012, has rapidly grown into a prominent software development company with a strong reputation for delivering innovative technology solutions. Headquartered in GIFT City, Gandhinagar, the company leverages world-class infrastructure and a strategic location to foster growth and access cutting-edge resources.\n\nWith a team of over 300 highly skilled professionals, DRC Systems is known for its dynamic approach, expansive industry reach, and commitment to being the most sought-after enterprise technology partner.\n\nTheir mission is centered on creating high-quality, scalable, and robust technology solutions that drive business transformation across diverse sectors, emphasizing accessibility and efficiency.\n\nThe company boasts extensive expertise in emerging technologies like LMS, Blockchain, AI/ML, Data Analytics, Automation, Cloud, and Mobile/Web development, applying these across key industries such as Education, Healthcare, Financial Services, Public Sector, Retail/E-commerce, and Transportation/Logistics.\n\nDRC Systems highlights customer satisfaction as a cornerstone, praised for responsive communication, timely delivery, and quality-driven results that positively impact clients' business outcomes.\n\nReinforcing their quality commitment, they hold prestigious certifications like CMMI Maturity Level 3, ISO 9001, and ISO 27001, alongside strategic partnerships with technology giants like Microsoft and Google Cloud.\n\nA strong people-first culture, investing in employee development and engagement, contributes significantly to their success.\n\nWith a focus on investing in emerging technologies, global expansion, and enhanced customer engagement, DRC Systems is well-positioned for sustainable long-term growth and continues to be a trusted partner for digital transformation.",
+  "about_company": "DRC Systems India Limited was established in 2012. It is a prominent software development company with headquarters in GIFT City, Gandhinagar. The company has a team of over 300 highly skilled professionals. Its vision is to be the most sought-after enterprise technology partner, and its mission is to create high-quality, scalable, and robust technology solutions that drive business transformation across various sectors, emphasizing accessibility and efficiency.",
   "their_clients": [
     "Shree Swaminarayan Gurukul (Educational Institution)",
-    "IIK International Language Services (Language Services)",
-    "Tarrakki (Financial Services / Fintech)",
-    "Storex (Healthcare / Hospital Industry)",
-    "Blink (Financial Services / SaaS)",
+    "IIK International Language Services (Language Services, Berlin)",
+    "Tarrakki (Financial Services/Fintech)",
+    "Storex (Hospital Industry)",
+    "Blink (SaaS/Financial Savings)",
     "CVT Customer Vanity Top (Culinary Domain)",
     "Eden Wines (Wine Business)",
-    "MEGA (Transportation / Public Sector - Metrolink Express)",
-    "Clients across Education, Healthcare, Financial Services, Public Sector, Retail and E-Commerce, Transportation and Logistics sectors."
+    "Metrolink Express (Transportation)"
   ],
   "why_should_you_hire_us": [
-    "Proven track record since 2012 with rapid growth and strong reputation.",
-    "Ability to deliver high-quality, scalable, and robust technology solutions tailored to specific needs.",
-    "Extensive expertise across key emerging technologies including AI/ML, Blockchain, and Cloud.",
-    "Deep industry experience providing specialized solutions in diverse sectors like Healthcare, Finance, and Education.",
-    "Commitment to customer satisfaction demonstrated through responsive communication, timely delivery, and proactive support.",
-    "Adherence to international quality and security standards validated by CMMI Level 3, ISO 9001, and ISO 27001 certifications.",
-    "Strategic partnerships with technology leaders like Microsoft and Google Cloud enabling cutting-edge solutions.",
-    "Focus on driving tangible business outcomes such as improved efficiency, enhanced engagement, and bottom-line growth."
+    "Deliver innovative, high-quality, scalable, and robust technology solutions",
+    "Drive business transformation across various sectors",
+    "Emphasize accessibility and efficiency in solution adoption",
+    "Strong focus on customer satisfaction and building long-term partnerships",
+    "Possess extensive expertise in emerging technologies (LMS, Blockchain, AI/ML, Data Analytics, Automation, Cloud, Mobile/Web)",
+    "Deep industry experience across diverse sectors (Education, Healthcare, Financial Services, Public Sector, Retail/E-commerce, Transportation/Logistics)",
+    "Proven track record with notable project successes",
+    "Maintain responsive communication and transparency throughout the project lifecycle",
+    "Employ robust project management frameworks and stringent quality control measures",
+    "Deliver solutions that significantly improve operational efficiencies and enhance customer engagement",
+    "Hold prestigious certifications (CMMI ML3, ISO 9001, ISO 27001) demonstrating commitment to quality and security",
+    "Strategic partnerships with leading technology giants (Microsoft, Google Cloud) ensuring integration of state-of-the-art tools",
+    "Team of over 300 highly skilled and continuously developing professionals",
+    "Culture rooted in a people-first approach fostering collaboration and innovation"
   ],
   "technological_experience": {
-    "Web Development": [
-      "Mobile and Web Application Development (emphasizing responsive design and user-centric development)",
-      "Learning Management Systems (LMS)",
-      "ERP portals and custom forms (Public Sector)"
-    厢
-    ],
-    "Mobile": [
-      "Mobile and Web Application Development (emphasizing responsive design and user-centric development)",
-      "Mobile platforms (e.g., Tarrakki)"
-    ],
-    "Cloud & DevOps": [
-      "Cloud Solutions (modern cloud-based applications for scalability, resource optimization, data security)"
-    ],
-    "AI/ML": [
-      "Artificial Intelligence (AI) and Machine Learning (ML) (for process automation, data insights, intelligent applications)"
-    ],
-    "Others": [
-      "Learning Management Systems (LMS) (educational platforms)",
-      "Blockchain Solutions (secure and transparent business solutions for finance, supply chain, data sharing)",
-      "Data Analytics and Business Intelligence (extracting actionable insights from big data for better decision-making)",
-      "Automation and Digital Transformation (streamlining operations with advanced automation tools)"
-    ]
+    "Web Development": ["User-centric development", "Responsive design"],
+    "Mobile": ["User-centric development", "Responsive design"],
+    "Cloud & DevOps": ["Modern cloud-based applications", "Scalability optimization", "Resource usage optimization", "Data security"],
+    "AI/ML": ["Process automation", "Data insights extraction", "Intelligent application creation"],
+    "Others": ["Learning Management Systems (LMS)", "Blockchain Solutions (secure, transparent business solutions)", "Data Analytics and Business Intelligence (actionable insights, better decision-making)", "Automation and Digital Transformation (streamlining operations)"]
   },
   "industry_experience": [
-    "Education: Designing and implementing interactive educational platforms, digital solutions, and customized Learning Management Systems (LMS) for traditional and remote models.",
-    "Healthcare: Developing robust applications for patient record management, appointment scheduling, and secure data handling, complying with strict regulatory standards.",
-    "Financial Services: Providing solutions for banks, insurance companies, and financial institutions, including secure transactional systems, compliance applications, and financial analytics tools.",
-    "Public Sector: Delivering dynamic ERP portals and custom forms to facilitate seamless digital administration, enhancing accessibility and efficiency of government services.",
-    "Retail and E-Commerce: Creating scalable, user-centric ecommerce platforms with smooth customer experiences, efficient product management, and secure payment integrations.",
-    "Transportation and Logistics: Offering solutions to streamline service operations, enhance route and fleet management, utilizing real-time data monitoring and analytics for efficiency and cost-effectiveness."
+    "Education: designing and implementing interactive educational platforms, digital solutions, customized LMS for traditional and remote education",
+    "Healthcare: developing robust applications for patient record management, appointment scheduling, secure data handling compliant with regulatory standards",
+    "Financial Services: providing solutions for banks, insurance companies, financial institutions including secure transactional systems, compliance-focused applications, financial analytics tools",
+    "Public Sector: delivering dynamic ERP portals and custom forms for seamless digital administration, making government services accessible and efficient",
+    "Retail and E-Commerce: creating scalable, user-centric ecommerce platforms with efficient product management and secure payment integrations",
+    "Transportation and Logistics: streamlining service operations, enhancing route management, ensuring efficient fleet management with realtime data monitoring and analytics"
   ],
   "notable_projects": [
     {
       "title": "Shree Swaminarayan Gurukul",
       "client_type": "Education",
       "technologies_used": [],
-      "summary": "Partnered with an educational institution to deploy a comprehensive solution supporting extensive academic and administrative operations.\nThe project aimed to modernize and streamline the institution's core functions.\nIt involved developing a platform to manage student data, course content, assessments, and administrative tasks.\nThe solution enhanced overall operational efficiency and accessibility for educators and administrators.\nThis project underscores DRC Systems' commitment to enhancing educational infrastructure through technology.",
-      "outcomes": "Enhanced educational infrastructure; Streamlined academic and administrative operations."
+      "summary": "Partnered with this educational institution to deploy a comprehensive software solution supporting extensive academic and administrative operations. The project aimed to enhance the educational infrastructure through technology, streamlining various processes for the institution.",
+      "outcomes": "Enhanced educational infrastructure through technology; Supported extensive academic and administrative operations."
     },
     {
       "title": "IIK International Language Services",
       "client_type": "Language Services",
       "technologies_used": [],
-      "summary": "Delivered tailored language service solutions for a Berlin-based client catering to an international clientele.\nThe project required understanding the unique needs of a global language service provider.\nIt involved creating a system to manage language courses, student enrollments, and potentially interpreter/translator scheduling.\nThe solution was designed to handle multiple languages and diverse client requirements.\nThis engagement demonstrates DRC Systems' versatility in managing projects on a global scale.",
-      "outcomes": "Delivered tailored solutions for international clientele; Demonstrated versatility in handling global projects."
+      "summary": "Delivered tailored language service solutions for a Berlin-based client catering to an international clientele. This project demonstrated the company's versatility and capability in handling projects on a global scale, meeting the specific needs of a specialized service provider.",
+      "outcomes": "Provided tailored language service solutions; Demonstrated versatility in handling global projects."
     },
     {
       "title": "Tarrakki",
-      "client_type": "Financial Services (Fintech)",
+      "client_type": "Financial Services/Fintech",
       "technologies_used": [],
-      "summary": "Developed a mobile platform designed to simplify the mutual fund investment process for users.\nThe application aimed to make complex financial concepts and transactions easily accessible.\nKey features likely included fund browsing, investment tracking, and secure transaction capabilities.\nThe focus was on creating a user-friendly experience for novice and experienced investors alike.\nTarrakki showcases DRC Systems' ability to develop intuitive financial applications that simplify complex processes.",
-      "outcomes": "Simplified mutual fund investment process; Created a user-friendly financial application."
+      "summary": "Created a mobile platform designed to simplify the mutual fund investment process. Tarrakki showcases DRC Systems' ability to develop user-friendly finance-related applications that make complex financial processes more accessible and manageable for users.",
+      "outcomes": "Simplified mutual fund investment process; Developed a user-friendly finance application."
     },
     {
       "title": "Storex",
       "client_type": "Healthcare (Hospital Industry)",
       "technologies_used": [],
-      "summary": "Focused on improving operational efficiencies within the hospital industry through a specialized project.\nThe solution targeted specific workflow challenges common in healthcare settings.\nThis might involve inventory management, asset tracking, or streamlining specific departmental processes.\nThe project highlights DRC Systems' capacity to tailor solutions for niche industry requirements.\nThe goal was to enhance efficiency and potentially reduce operational costs for the hospital.",
-      "outcomes": "Improved operational efficiencies within the hospital industry; Tailored solution for niche healthcare requirements."
+      "summary": "Focused on improving operational efficiencies within the hospital industry. The Storex project highlights the company's capacity to tailor solutions for niche industry requirements, addressing specific operational challenges faced by healthcare providers.",
+      "outcomes": "Improved operational efficiencies within the hospital industry; Tailored solution for niche requirements."
     },
     {
       "title": "Blink",
-      "client_type": "Financial Services (SaaS)",
+      "client_type": "SaaS/Financial Savings",
       "technologies_used": [],
-      "summary": "Created a SaaS platform designed to help users maximize savings.\nThe platform likely provides tools or insights to help individuals or businesses identify savings opportunities.\nThis could involve expense tracking, budget management, or finding better deals on services.\nIt exemplifies how DRC Systems leverages digital platforms to solve everyday financial challenges.\nThe focus is on providing value to users by helping them improve their financial well-being through technology.",
-      "outcomes": "SaaS platform to help users maximize savings; Leveraged digital platform to solve everyday financial challenges."
+      "summary": "Developed a SaaS platform designed to help users maximize savings. Blink is an example of how DRC Systems leverages digital platforms to solve everyday financial challenges, providing a tool that assists users in managing and increasing their savings effectively.",
+      "outcomes": "Helped users maximize savings; Leveraged a digital platform to solve everyday financial challenges."
     },
     {
       "title": "CVT Customer Vanity Top",
       "client_type": "Culinary Domain",
       "technologies_used": [],
-      "summary": "Developed an application for the culinary domain, contributing to enriching customer experiences.\nThe nature of the application suggests a focus on enhancing interaction between the business and its customers.\nThis could involve online ordering, loyalty programs, personalized recommendations, or feedback systems.\nIt highlights the integration of modern technology with traditional services in the culinary sector.\nThe goal was to provide a more engaging and convenient experience for customers.",
+      "summary": "An application developed for the culinary domain that contributed to enriching customer experiences. This project involved integrating modern technology with traditional services to enhance interactions and satisfaction within the culinary sector.",
       "outcomes": "Enriched customer experiences in the culinary domain; Integrated modern technology with traditional services."
     },
     {
       "title": "Eden Wines",
       "client_type": "Wine Business",
       "technologies_used": [],
-      "summary": "Created a bespoke website for a wine business, aimed at expanding its digital footprint.\nThe project focused on merging aesthetic design appropriate for a wine brand with robust functionality.\nKey features likely included product catalogs, online purchasing capabilities, and information about the winery.\nThe website serves as a primary online presence to reach a wider customer base.\nThis demonstrates DRC Systems' ability to deliver custom web solutions that balance design and functionality for specific business needs.",
-      "outcomes": "Expanded digital footprint for the client; Merged aesthetic design with robust functionality in a bespoke website."
+      "summary": "Developed a bespoke website for a wine business. Eden Wines expanded the digital footprint of its client by merging aesthetic design with robust functionality, providing an online presence that is both appealing and operationally sound for the business.",
+      "outcomes": "Expanded digital footprint for a wine business; Merged aesthetic design with robust functionality."
     },
     {
       "title": "MEGA",
-      "client_type": "Transportation / Public Sector",
+      "client_type": "Transportation",
       "technologies_used": [],
-      "summary": "Involved creating an online presence for Metrolink Express, effectively connecting two major cities, Gandhinagar and Ahmedabad.\nThis project likely included features related to route information, schedules, ticketing, or real-time updates.\nThe scale of connecting major city transportation highlights the complexity of the project.\nIt demonstrates DRC Systems' ability to handle large-scale, potentially real-time, digital projects.\nThe solution aimed to provide accessible and efficient information for public transportation users.",
-      "outcomes": "Created online presence for major transportation link; Demonstrated ability to handle large-scale, real-time digital projects."
+      "summary": "Involved creating an online presence for Metrolink Express, effectively connecting two major cities, Gandhinagar and Ahmedabad. This project demonstrated DRC Systems' ability to handle largescale, realtime digital projects within the transportation sector.",
+      "outcomes": "Created online presence for transportation service; Connected two major cities digitally; Handled largescale, realtime project."
     }
   ],
-  "customer_satisfaction": "Customer satisfaction is a cornerstone, consistently praised for responsiveness, timely project delivery, and proactive support. Clients note high transparency and prompt communication building long-term trust. Robust project management and stringent quality control ensure projects meet or exceed expectations. Initiatives have significantly improved operational efficiencies, enhanced customer engagement, and driven bottom-line growth for clients.",
-  "global_presence": "Headquartered in India (GIFT City), the company has experience handling projects on a global scale (e.g., IIK International Language Services in Berlin) and is actively exploring opportunities for global expansion.",
+  "customer_satisfaction": "Customer satisfaction is a cornerstone, with clients consistently praising DRC Systems for responsive communication, timely project delivery, and proactive support. They note high levels of transparency and prompt communication throughout the project lifecycle, building long-term trust. The company employs robust project management frameworks and stringent quality control to ensure projects meet or exceed expectations. Initiatives have been credited with significantly improving operational efficiencies, enhancing customer engagement, and driving bottom-line growth for clients.",
+  "global_presence": "Demonstrated capability in handling projects on a global scale, as evidenced by a client engagement in Berlin (IIK International Language Services). Actively exploring opportunities in international markets for future expansion.",
   "certifications": [
     "CMMI Maturity Level 3",
     "ISO 9001",
     "ISO 27001"
   ],
-  "team_strength": "Composed of over 300 highly skilled professionals. The company fosters a people-first culture through investment in employee development (regular technical/non-technical training), transparent evaluation (KPIs), strong employee engagement (social activities), and an inclusive work culture that promotes innovation and contribution to strategic decisions.",
-  "delivery_model": "The company utilizes robust project management frameworks and stringent quality control measures to ensure timely delivery and adherence to high standards. While specific methodologies like Agile or Waterfall or team structures (dedicated, offshore) are not explicitly detailed, the emphasis is on structured processes leading to quality outcomes and timely project completion.",
+  "team_strength": "Comprises a team of over 300 highly skilled professionals. The company invests in regular technical and non-technical training sessions for employee development and uses well-defined KPIs for transparent evaluation. A strong emphasis is placed on team bonding, employee satisfaction, and fostering an inclusive work culture.",
+  "delivery_model": "Information on specific delivery models (Agile, T&M, etc.) and offshore/onshore options is not explicitly provided in the source text. The text mentions robust project management frameworks and stringent quality control measures.",
   "core_values": [
-    "Customer Satisfaction",
-    "Long-term Partnership Building",
-    "Commitment to Innovative Thinking",
-    "People-First Approach",
-    "Dedication to Excellence",
-    "Continuous Improvement"
+    "Customer satisfaction",
+    "Long-term partnership building",
+    "Innovative thinking",
+    "Accessibility",
+    "Efficiency",
+    "Quality-driven delivery",
+    "Transparency",
+    "People-first approach",
+    "Employee development",
+    "Collaboration",
+    "Inclusivity"
   ]
 }
 ```

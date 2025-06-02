@@ -111,6 +111,7 @@
         li {
             margin-bottom: 6pt;
             font-size: 12pt; /* Explicitly set list item font size */
+            text-align: justify;
         }
 
         /* Tables */
@@ -315,7 +316,8 @@
     <!-- Cover and Summary together on first page -->
     <div class="first-page">
       <header>
-        <img src="assets/drc_logo.svg" alt="DRC Systems India Limited." height="80px">
+<!--        <img src="assets/drc_logo.svg" alt="DRC Systems India Limited." height="80px">-->
+        <p style="text-align:center">DRC Systems India Limited.</p>
         <h1>{{ project_title }}</h1>
         <p><strong>Proposal for:</strong> {{ client_name }}<br>
            <strong>Date:</strong> {{ proposal_date }}</p>
@@ -369,7 +371,8 @@
       <h2>Why You Should Hire Us</h2>
       <ul>
         {% for reason in why_us %}
-          <li>{{ reason }}</li>
+        <!-- Modifiying it to identify the html tag strong in text-->
+          <li>{{ reason | safe}}</li>
         {% endfor %}
       </ul>
     </div>
