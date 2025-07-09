@@ -41,14 +41,14 @@ load_dotenv()
 
 
 #Using google LLM
-llm = ChatGoogleGenerativeAI(model='gemini-2.5-flash-preview-04-17',
+llm = ChatGoogleGenerativeAI(model='gemini-2.5-flash',
                              temperature=0.6,
                              model_kwargs={
                    "response_format": {"type": "json_object"}
                })
 
 
-llm2 = ChatGoogleGenerativeAI(model="gemini-2.5-flash-preview-04-17",temperature=0.7)
+llm2 = ChatGoogleGenerativeAI(model="gemini-2.5-flash",temperature=0.7)
 
 #Testing
 # print(llm.invoke("hello"))
