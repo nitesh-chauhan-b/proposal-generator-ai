@@ -50,7 +50,7 @@ llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash',
                })
 
 
-llm2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash", timeout = 120.0,teperature=0.7)
+llm2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash", timeout = 120.0,temperature=0.7)
 
 #Testing
 # print(llm.invoke("hello"))
