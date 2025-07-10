@@ -24,32 +24,32 @@ load_dotenv()
 #Changing llm model
 # llm = ChatGroq(model="deepseek-r1-distill-llama-70b",temperature=0.6)
 
-# #Changing llm model
-# llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
-#                temperature=0.7,
-#                #Adding parameter to force model to output JSON Response Every Time
-#                model_kwargs={
-#                    "response_format": {"type": "json_object"}
-#                }
-#                )
+#Changing llm model
+llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+               temperature=0.7,
+               #Adding parameter to force model to output JSON Response Every Time
+               model_kwargs={
+                   "response_format": {"type": "json_object"}
+               }
+               )
 
-# # Using llm without the json format
-# llm2 = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
-#                temperature=0.7)
+# Using llm without the json format
+llm2 = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct",
+               temperature=0.7)
 
 # llm = ChatGroq(model="llama-3.3-70b-versatile",temperature=0.6)
 
 
 #Using google LLM
-llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash',
-                             temperature=0.6,
-                             transport_params={"timeout": 120},
-                             model_kwargs={
-                   "response_format": {"type": "json_object"}
-               })
+# llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash',
+#                              temperature=0.6,
+#                              transport_params={"timeout": 120},
+#                              model_kwargs={
+#                    "response_format": {"type": "json_object"}
+#                })
 
 
-llm2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash",transport_params={"timeout": 120},temperature=0.7)
+# llm2 = ChatGoogleGenerativeAI(model="gemini-2.0-flash",transport_params={"timeout": 120},temperature=0.7)
 
 #Testing
 # print(llm.invoke("hello"))
